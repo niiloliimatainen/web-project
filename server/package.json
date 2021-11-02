@@ -1,0 +1,30 @@
+{
+	"name": "web_week4",
+	"version": "1.0.0",
+	"description": "",
+	"main": "source.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"nodemon": "nodemon server.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/niiloliimatainen/web_week4.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/niiloliimatainen/web_week4/issues"
+	},
+	"homepage": "https://github.com/niiloliimatainen/web_week4#readme",
+	"dependencies": {
+		"bcryptjs": "^2.4.3",
+		"dotenv": "^10.0.0",
+		"express": "^4.17.1",
+		"express-validator": "^6.13.0",
+		"jsonwebtoken": "^8.5.1",
+		"mongodb": "^4.1.2",
+		"mongoose": "^6.0.8",
+		"multer": "^1.4.3"
+	}
+}

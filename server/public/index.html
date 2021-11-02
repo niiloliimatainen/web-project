@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+		/>
+		<link
+			href="https://fonts.googleapis.com/icon?family=Material+Icons"
+			rel="stylesheet"
+		/>
+		<!-- Compiled and minified JavaScript -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+		<title>Recipes</title>
+
+		<link rel="stylesheet" href="css/styles.css" />
+		<!-- Compiled and minified CSS -->
+	</head>
+	<body>
+		<nav class="blue darken-2">
+			<div class="nav-wrapper">
+				<a href="#!" class="brand-logo center" id="logo">Recipes</a>
+				<input
+					id="search-bar"
+					class="right"
+					placeholder="Search"
+					type="search"
+				/>
+			</div>
+		</nav>
+
+		<div class="container">
+			<div class="col" id="recipe-container">
+				<div id="images"></div>
+			</div>
+			<div class="col" id="input-container">
+				<h4>Name</h4>
+				<input type="text" id="name-text" />
+				<h4>Ingredients</h4>
+				<textarea id="ingredients-text"></textarea>
+				<button id="add-ingredient" class="btn" type="button">
+					Add ingredient
+				</button>
+				<h4>Instructions</h4>
+				<textarea id="instructions-text"></textarea>
+				<button id="add-instruction" class="btn" type="button">
+					Add instruction
+				</button>
+
+				<form enctype="multipart/form-data">
+					<input
+						type="file"
+						id="camera-file-input"
+						accept="image/*"
+						multiple="multiple"
+					/>
+				</form>
+				<form class="category-form">
+					<p>
+						<label id="label-1" for="catergory-1">
+							<input type="checkbox" id="category-1" />
+							<span id="category-1-text"></span>
+						</label>
+					</p>
+					<p>
+						<label id="label-2" for="catergory-2">
+							<input type="checkbox" id="category-2" />
+							<span id="category-2-text"></span>
+						</label>
+					</p>
+					<p>
+						<label id="label-3" for="catergory-3">
+							<input type="checkbox" id="category-3" />
+							<span id="category-3-text"></span>
+						</label>
+					</p>
+				</form>
+				<button id="submit" class="btn" type="submit">Submit</button>
+			</div>
+		</div>
+		<script src="js/index.js"></script>
+	</body>
+</html>
