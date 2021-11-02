@@ -19,6 +19,10 @@ db.on("error", console.error.bind(console, "MongoDB connection error"));
 
 app.use(express.json());
 
+router.get("/moi", (req, res) => {
+	return res.send({ testi: "moi" });
+});
+
 // app.get("/", (req, res) => {
 // 	res.sendFile(path.join(__dirname + "/public/index.html"));
 // });
