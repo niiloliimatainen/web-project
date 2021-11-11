@@ -1,9 +1,9 @@
-.mat-card {
-  margin: 15px;
-  cursor: pointer;
-  border: solid 1px #ff9800;
-  //   background-color: whitesmoke;
+.list-item {
+  border-bottom: solid 2px whitesmoke;
+  //   margin: 0px 4px;
 }
 
-.mat-card-header {
+.vote-container {
+  display: flex;
+  flex-direction: column;
 }

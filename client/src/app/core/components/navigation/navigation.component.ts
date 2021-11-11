@@ -43,7 +43,7 @@ export class NavigationComponent {
       });
     } else {
       this.dialogRef = this.dialog.open(LoginComponent, {
-        width: '40vw',
+        width: '35vw',
         minWidth: '300px',
         height: '50vh',
         minHeight: '500px',
