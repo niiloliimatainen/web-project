@@ -10,9 +10,10 @@ import { MaterialModule } from '../material/material.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EntityComponent } from './components/entity/entity.component';
 
 @NgModule({
-  declarations: [NavigationComponent, DashboardComponent, LoginComponent],
+  declarations: [NavigationComponent, DashboardComponent, LoginComponent, EntityComponent],
   imports: [CommonModule, MaterialModule, FormsModule, ReactiveFormsModule],
 })
 export class CoreModule {

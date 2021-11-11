@@ -1,14 +1,17 @@
-.testi {
-}
-
 .dashboard-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+  background-color: whitesmoke;
 
   // Viewport height - navigation bar
   height: calc(100vh - 64px);
   @media only screen and (max-width: 600px) {
     height: calc(100vh - 56px);
   }
+}
+
+.header {
+  margin-left: 20px;
+  margin-top: 20px;
 }

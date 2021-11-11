@@ -24,16 +24,25 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-// Global styles
+/* Global styles */
 .spacer {
   flex: 1 1 auto;
 }
 
-/* Change the white to any color */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px white inset !important;
   box-shadow: 0 0 0 30px white inset !important;
+}
+
+/* CSS rules for the custom angular material classes */
+.bottom-dialog .mat-dialog-container {
+  padding-top: 0;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
