@@ -8,10 +8,12 @@ import { CommonModule } from '@angular/common';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { MaterialModule } from '../material/material.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { LoginComponent } from './components/login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [NavigationComponent, DashboardComponent],
-  imports: [CommonModule, MaterialModule],
+  declarations: [NavigationComponent, DashboardComponent, LoginComponent],
+  imports: [CommonModule, MaterialModule, FormsModule, ReactiveFormsModule],
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
