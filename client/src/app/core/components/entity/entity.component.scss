@@ -1,0 +1,17 @@
+.list-item {
+  border-bottom: solid 2px whitesmoke;
+}
+
+.vote-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.vote-item {
+  display: flex;
+  padding: 5px 2px;
+}
+
+.vote-count {
+  margin: 4px 6px 0px 0px;
+}

@@ -11,6 +11,6 @@ export class AppComponent {
 
   constructor(rendererFactory: RendererFactory2) {
     this.renderer = rendererFactory.createRenderer(null, null);
-    this.renderer.addClass(document.body, 'app-light-theme');
+    this.renderer.addClass(document.body, 'app-dark-theme');
   }
 }

@@ -1,13 +1,10 @@
 <mat-toolbar color="primary">
+  <button mat-icon-button class="nav-icon logo" routerLink="/">
+    <mat-icon>dashboard</mat-icon>
+  </button>
   <span class="header">My App</span>
   <span class="nav-spacer"></span>
-  <button
-    mat-icon-button
-    class="nav-icon favorite-icon"
-    aria-label="Example icon-button with heart icon"
-  >
-    <mat-icon>favorite</mat-icon>
-  </button>
+
   <button
     *ngIf="this.authService.isLoggedIn()"
     mat-icon-button
@@ -28,4 +25,4 @@
   </button>
 </mat-toolbar>
 
-<app-dashboard></app-dashboard>
+<router-outlet></router-outlet>

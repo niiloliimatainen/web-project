@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
+import { BreakpointService } from '../../services/breakpoint.service';
 import { LoginComponent } from '../login/login.component';
 
 @Component({
@@ -9,14 +11,47 @@ import { LoginComponent } from '../login/login.component';
   styleUrls: ['./navigation.component.scss'],
 })
 export class NavigationComponent {
-  constructor(private dialog: MatDialog, public authService: AuthService) {}
+  private breakpointSubscription: Subscription;
+  private dialogRef: MatDialogRef<LoginComponent> | undefined;
+  isHandset: boolean = false;
+
+  constructor(
+    private dialog: MatDialog,
+    public authService: AuthService,
+    private breakpointService: BreakpointService
+  ) {
+    this.breakpointSubscription = this.breakpointService.isHandset$.subscribe(
+      (isHandsetPortrait) => {
+        this.isHandset = isHandsetPortrait;
+        this.dialogRef?.close();
+      }
+    );
+  }
 
   openLogin() {
-    this.dialog.open(LoginComponent, {
-      width: '40vw',
-      minWidth: '400px',
-      height: '50vh',
-      minHeight: '400px',
-    });
+    if (this.isHandset) {
+      this.dialogRef = this.dialog.open(LoginComponent, {
+        width: '100%',
+        height: '80%',
+        maxWidth: '100%',
+        maxHeight: '80%',
+        panelClass: 'bottom-dialog',
+        position: {
+          bottom: '0',
+          left: '0',
+        },
+      });
+    } else {
+      this.dialogRef = this.dialog.open(LoginComponent, {
+        width: '35vw',
+        minWidth: '300px',
+        height: '50vh',
+        minHeight: '500px',
+      });
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.breakpointSubscription.unsubscribe();
   }
 }

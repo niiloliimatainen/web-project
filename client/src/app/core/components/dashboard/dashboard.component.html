@@ -1,3 +1,7 @@
 <div class="dashboard-container">
-  <h1 class="testi">dashboard works!</h1>
+  <h2 class="header">All code snippets</h2>
+  <mat-divider></mat-divider>
+  <mat-nav-list>
+    <app-entity *ngFor="let moi of this.testList"></app-entity>
+  </mat-nav-list>
 </div>
