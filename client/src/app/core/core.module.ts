@@ -13,6 +13,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EntityComponent } from './components/entity/entity.component';
 import { ViewEntityComponent } from './components/view-entity/view-entity.component';
 import { RouterModule } from '@angular/router';
+import { HighlightModule } from 'ngx-highlightjs';
+import { CommentComponent } from './components/comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { RouterModule } from '@angular/router';
     LoginComponent,
     EntityComponent,
     ViewEntityComponent,
+    CommentComponent,
   ],
   imports: [
     CommonModule,
@@ -28,6 +31,7 @@ import { RouterModule } from '@angular/router';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
+    HighlightModule,
   ],
 })
 export class CoreModule {
