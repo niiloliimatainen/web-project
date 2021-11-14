@@ -4,6 +4,7 @@ import { Result } from '../models/result.model';
 import { catchError, shareReplay, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Observable, of } from 'rxjs';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -51,6 +52,11 @@ export class AuthService {
           return of({ success: false, status: error.status });
         })
       );
+  }
+
+  getUser(id: string): Observable<User> {
+    console.log(id);
+    return this.http.get<User>(`${this.userUrl}/${id}`, this.options);
   }
 
   logout() {

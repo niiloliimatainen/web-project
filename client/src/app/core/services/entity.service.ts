@@ -23,6 +23,10 @@ export class EntityService {
     return this.http.get<Entity[]>(`${this.entityUrl}/entities`, this.options);
   }
 
+  getEntity(id: string): Observable<Entity> {
+    return this.http.get<Entity>(`${this.entityUrl}/${id}`, this.options);
+  }
+
   createEntity(entity: Entity): Observable<Entity[]> {
     return this.http.post<Entity[]>(`${this.entityUrl}`, entity, this.options);
   }

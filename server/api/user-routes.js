@@ -52,6 +52,13 @@ router.post('/login', (req, res) => {
 	);
 });
 
+router.get('/:id', (req, res) => {
+	Users.findOne({ _id: req.params.id }, (err, user) => {
+		if (err) throw err;
+		if (user) return res.send(user);
+	});
+});
+
 function createUser(req, res) {
 	bcrypt.genSalt(10, (err, salt) => {
 		if (err) throw err;

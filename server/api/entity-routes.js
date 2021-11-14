@@ -7,6 +7,7 @@ const validateToken = require('../auth/validateToken');
 router.post('', validateToken, (req, res) => {
 	const ent = req.body;
 	const newEntity = new Entity({
+		user: req.user.id,
 		title: ent.title,
 		content: ent.content,
 		codeSnippet: ent.codeSnippet,
@@ -18,7 +19,7 @@ router.post('', validateToken, (req, res) => {
 
 	newEntity.save((err, ent) => {
 		if (err) throw err;
-		Users.findOne({ user: req.user.id }, (err, user) => {
+		Users.findOne({ _id: req.user.id }, (err, user) => {
 			if (err) throw err;
 			if (user) {
 				user.entities = user.entities.concat([ent.id]);

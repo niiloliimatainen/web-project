@@ -52,6 +52,12 @@ input:-webkit-autofill:active {
 }
 
 /* CSS rules for the custom angular material classes */
+.loading-spinner {
+  display: block;
+  margin: auto;
+  margin-top: 50px;
+}
+
 .bottom-dialog .mat-dialog-container {
   padding-top: 0;
   border-bottom-right-radius: 0px;

@@ -1,17 +1,23 @@
-<div class="list-item">
-  <mat-list-item routerLink="/testi">
-    <div class="vote-container">
-      <div class="vote-item">
-        <p class="vote-count">0</p>
-        <mat-icon>thumb_up_alt</mat-icon>
-      </div>
-      <div class="vote-item">
-        <p class="vote-count">0</p>
-        <mat-icon>thumb_down_alt</mat-icon>
-      </div>
-    </div>
+<ng-template #loading>
+  <mat-spinner class="loading-spinner"></mat-spinner>
+</ng-template>
 
-    <h4 mat-line>Testi</h4>
-    <p mat-line>Tekijä ja kaikkee</p>
-  </mat-list-item>
-</div>
+<ng-container *ngIf="(this.loading$ | async) === false; else loading">
+  <div class="list-item">
+    <mat-list-item [routerLink]="['/', entity._id]">
+      <div class="vote-container">
+        <div class="vote-item">
+          <p class="vote-count">{{ entity.likes }}</p>
+          <mat-icon>thumb_up_alt</mat-icon>
+        </div>
+        <div class="vote-item">
+          <p class="vote-count">{{ entity.dislikes }}</p>
+          <mat-icon>thumb_down_alt</mat-icon>
+        </div>
+      </div>
+
+      <h4 mat-line>{{ entity.title }}</h4>
+      <p mat-line>{{ user.username }}</p>
+    </mat-list-item>
+  </div>
+</ng-container>
