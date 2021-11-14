@@ -29,7 +29,7 @@
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "src/styles.scss",
-              "./node_modules/highlight.js/styles/github.css"
+              "./node_modules/highlight.js/styles/stackoverflow-light.css"
             ],
             "scripts": []
           },
@@ -96,7 +96,7 @@
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "src/styles.scss",
-              "./node_modules/highlight.js/styles/github.css"
+              "./node_modules/highlight.js/styles/stackoverflow-light.css"
             ],
             "scripts": []
           }

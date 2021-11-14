@@ -4,8 +4,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 const port = 1234;
-const path = require('path');
 const userRoutes = require('./api/user-routes');
+const entityRoutes = require('./api/entity-routes.js');
 
 const mongoDB = 'mongodb://localhost:27017/testdb';
 mongoose.connect(mongoDB);
@@ -19,16 +19,12 @@ db.on('error', console.error.bind(console, 'MongoDB connection error'));
 
 app.use(express.json());
 
-// app.get("/", (req, res) => {
-// 	res.sendFile(path.join(__dirname + "/public/index.html"));
-// });
+app.use('/api/user', userRoutes);
 
-app.use('/api', userRoutes);
-
-// app.use(express.static(path.join(__dirname, "public")));
+app.use('/api/entity', entityRoutes);
 
 app.use('*', (req, res) => {
-	res.status(404).send('what???');
+	res.status(404).send('Invalid url');
 });
 
 app.listen(port, () => console.log(`Server listening a port ${port}!`));

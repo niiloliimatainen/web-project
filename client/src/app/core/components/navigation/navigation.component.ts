@@ -45,8 +45,8 @@ export class NavigationComponent {
       this.dialogRef = this.dialog.open(LoginComponent, {
         width: '35vw',
         minWidth: '300px',
-        height: '50vh',
-        minHeight: '500px',
+        height: '60vh',
+        minHeight: '600px',
       });
     }
   }

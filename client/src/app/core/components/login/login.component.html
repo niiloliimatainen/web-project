@@ -15,12 +15,12 @@
     <div class="content">
       <form class="input-container" [formGroup]="loginForm">
         <mat-form-field color="accent">
-          <mat-label>Email</mat-label>
+          <mat-label>Username</mat-label>
           <input
             matInput
-            type="email"
-            formControlName="email"
-            autocomplete="username"
+            type="text"
+            formControlName="username"
+            autocomplete="username email"
           />
         </mat-form-field>
         <mat-form-field color="accent">
@@ -63,6 +63,15 @@
             type="email"
             formControlName="email"
             autocomplete="username"
+          />
+        </mat-form-field>
+        <mat-form-field color="accent">
+          <mat-label>Username</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="username"
+            autocomplete=""
           />
         </mat-form-field>
         <mat-form-field color="accent">
