@@ -10,7 +10,8 @@ router.post('', validateToken, (req, res) => {
 			const ent = req.body;
 			const date = new Date(Date.now()).toString();
 			const newEntity = new Entity({
-				user: req.user.id,
+				userId: req.user.id,
+				username: req.user.username,
 				title: ent.title,
 				content: ent.content,
 				codeSnippet: ent.codeSnippet,

@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 let entitySchema = new Schema({
-	user: String,
+	userId: String,
+	username: String,
 	title: String,
 	content: String,
 	codeSnippet: String,

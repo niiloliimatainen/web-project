@@ -25,7 +25,8 @@ router.get('/:entityId', (req, res) => {
 function createComment(req, res) {
 	const date = new Date(Date.now()).toString();
 	const newComment = new Comment({
-		user: req.user.id,
+		userId: req.user.id,
+		username: req.user.username,
 		entity: req.params.entityId,
 		content: req.body.content,
 		modified: date,

@@ -21,7 +21,7 @@ export class EntityComponent implements OnInit {
 
   ngOnInit() {
     this.userSubscription = this.authService
-      .getUser(this.entity.user)
+      .getUser(this.entity.userId)
       .pipe(indicate(this.loading$))
       .subscribe((user) => {
         this.user = user;

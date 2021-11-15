@@ -41,6 +41,7 @@ router.post('/login', (req, res) => {
 					const jwtPayload = {
 						id: user._id,
 						email: user.email,
+						username: user.username,
 					};
 					jwt.sign(jwtPayload, process.env.SECRET, (err, token) => {
 						if (err) throw err;

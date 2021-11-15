@@ -1,6 +1,7 @@
 export interface Entity {
   _id: string;
-  user: string;
+  userId: string;
+  username: string;
   title: string;
   content: string;
   codeSnippet: string;

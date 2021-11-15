@@ -10,6 +10,7 @@ import { Comment } from '../models/comment.model';
 })
 export class EntityService {
   private readonly entityUrl = environment.entity_url;
+  private readonly commentUrl = environment.comment_url;
   private options = {
     headers: new HttpHeaders({
       'content-type': 'application/json',
@@ -32,7 +33,7 @@ export class EntityService {
   }
 
   getComments(id: string): Observable<Comment[]> {
-    return this.http.get<Comment[]>(`${this.entityUrl}/comments`, this.options);
+    return this.http.get<Comment[]>(`${this.commentUrl}/${id}`, this.options);
   }
 
   createComment(comment: Comment): Observable<Comment> {

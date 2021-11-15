@@ -12,7 +12,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [],
@@ -29,7 +28,6 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatCardModule,
     MatListModule,
     MatProgressSpinnerModule,
-    MatProgressBarModule,
   ],
   exports: [
     MatButtonModule,
@@ -43,7 +41,6 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatCardModule,
     MatListModule,
     MatProgressSpinnerModule,
-    MatProgressBarModule,
   ],
 })
 export class MaterialModule {}

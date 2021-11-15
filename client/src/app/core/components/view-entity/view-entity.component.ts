@@ -5,6 +5,7 @@ import { switchMap } from 'rxjs/operators';
 import { indicate } from 'src/app/shared/utils/indicator';
 import { Entity } from '../../models/entity.model';
 import { User } from '../../models/user.model';
+import { Comment } from '../../models/comment.model';
 import { AuthService } from '../../services/auth.service';
 import { BreakpointService } from '../../services/breakpoint.service';
 import { EntityService } from '../../services/entity.service';
@@ -67,7 +68,7 @@ export class ViewEntityComponent {
   loading$ = new Subject<boolean>();
   entity: Entity = {} as Entity;
   user: User = {} as User;
-  testi = [1, 2, 3, 4];
+  comments: Comment[] = [] as Comment[];
 
   constructor(
     private breakpointService: BreakpointService,
@@ -82,11 +83,11 @@ export class ViewEntityComponent {
           indicate(this.loading$),
           switchMap((ent) => {
             this.entity = ent;
-            return this.authService.getUser(ent._id);
+            return this.entityService.getComments(ent._id);
           })
         )
-        .subscribe((user) => {
-          this.user = user;
+        .subscribe((comments) => {
+          this.comments.push(...comments);
         });
     });
   }

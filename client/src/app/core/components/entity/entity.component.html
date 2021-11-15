@@ -1,27 +1,17 @@
-<ng-template #loading>
-  <mat-progress-bar
-    class="loading-bar"
-    color="accent"
-    mode="indeterminate"
-  ></mat-progress-bar>
-</ng-template>
-
-<ng-container *ngIf="(this.loading$ | async) === false; else loading">
-  <div class="list-item">
-    <mat-list-item [routerLink]="['/', entity._id]">
-      <div class="vote-container">
-        <div class="vote-item">
-          <p class="vote-count">{{ entity.likes }}</p>
-          <mat-icon>thumb_up_alt</mat-icon>
-        </div>
-        <div class="vote-item">
-          <p class="vote-count">{{ entity.dislikes }}</p>
-          <mat-icon>thumb_down_alt</mat-icon>
-        </div>
+<div class="list-item">
+  <mat-list-item [routerLink]="['/', entity._id]">
+    <div class="vote-container">
+      <div class="vote-item">
+        <p class="vote-count">{{ entity.likes }}</p>
+        <mat-icon>thumb_up_alt</mat-icon>
       </div>
+      <div class="vote-item">
+        <p class="vote-count">{{ entity.dislikes }}</p>
+        <mat-icon>thumb_down_alt</mat-icon>
+      </div>
+    </div>
 
-      <h4 mat-line>{{ entity.title }}</h4>
-      <p mat-line>{{ user.username }}</p>
-    </mat-list-item>
-  </div>
-</ng-container>
+    <h4 mat-line>{{ entity.title }}</h4>
+    <p mat-line>{{ entity.username }}</p>
+  </mat-list-item>
+</div>

@@ -7,6 +7,7 @@ export const environment = {
 
   user_url: '/api/user',
   entity_url: '/api/entity',
+  comment_url: '/api/comment',
 };
 
 /*

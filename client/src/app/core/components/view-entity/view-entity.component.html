@@ -35,7 +35,10 @@
   <div class="comment-container">
     <h2 class="comment-header">Comments</h2>
     <mat-nav-list>
-      <app-comment *ngFor="let comment of this.entity.comments"></app-comment>
+      <app-comment
+        *ngFor="let comment of this.comments"
+        [comment]="comment"
+      ></app-comment>
     </mat-nav-list>
   </div>
 </ng-container>
