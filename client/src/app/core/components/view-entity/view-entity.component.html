@@ -1,35 +1,41 @@
-<div class="entity-container">
-  <div class="entity-headers">
-    <h2 class="entity-header">{{ this.entity.title }}</h2>
-    <div class="entity-subheaders">
-      <p>{{ this.entity.modified }}</p>
-      <span class="spacer"></span>
-      <p>{{ this.entity.comments?.length }}</p>
-    </div>
-  </div>
-  <mat-divider></mat-divider>
+<ng-template #loading>
+  <mat-spinner color="accent" class="loading-spinner"></mat-spinner>
+</ng-template>
 
-  <div
-    [ngClass]="{
-      'content-container': !(isHandset$ | async),
-      'content-container-mobile': isHandset$ | async
-    }"
-  >
-    <div class="text-content">
-      <p>
-        {{ this.entity.content }}
-      </p>
+<ng-container *ngIf="(this.loading$ | async) === false; else loading">
+  <div class="entity-container">
+    <div class="entity-headers">
+      <h2 class="entity-header">{{ this.entity.title }}</h2>
+      <div class="entity-subheaders">
+        <p>{{ this.entity.modified }}</p>
+        <span class="spacer"></span>
+        <p>{{ this.entity.comments?.length }}</p>
+      </div>
     </div>
-    <div>
-      <pre><code class="code-content" [highlight]="this.entity.codeSnippet"></code></pre>
+    <mat-divider></mat-divider>
+
+    <div
+      [ngClass]="{
+        'content-container': !(isHandset$ | async),
+        'content-container-mobile': isHandset$ | async
+      }"
+    >
+      <div class="text-content">
+        <p>
+          {{ this.entity.content }}
+        </p>
+      </div>
+      <div>
+        <pre><code class="code-content" [highlight]="this.entity.codeSnippet"></code></pre>
+      </div>
     </div>
   </div>
-</div>
-<div class="view-spacer"></div>
-<mat-divider></mat-divider>
-<div class="comment-container">
-  <h2 class="comment-header">Comments</h2>
-  <mat-nav-list>
-    <app-comment *ngFor="let comment of this.entity.comments"></app-comment>
-  </mat-nav-list>
-</div>
+  <div class="view-spacer"></div>
+  <mat-divider></mat-divider>
+  <div class="comment-container">
+    <h2 class="comment-header">Comments</h2>
+    <mat-nav-list>
+      <app-comment *ngFor="let comment of this.entity.comments"></app-comment>
+    </mat-nav-list>
+  </div>
+</ng-container>

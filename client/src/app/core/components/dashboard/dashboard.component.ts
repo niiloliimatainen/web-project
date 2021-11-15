@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Subject, Subscription } from 'rxjs';
 import { indicate } from 'src/app/shared/utils/indicator';
 import { Entity } from '../../models/entity.model';
@@ -20,7 +20,6 @@ export class DashboardComponent {
       .pipe(indicate(this.loading$))
       .subscribe((entities) => {
         this.entityList.push(...entities);
-        console.log(entities);
       });
   }
 

@@ -5,31 +5,33 @@ const Entity = require('../models/Entity');
 const validateToken = require('../auth/validateToken');
 
 router.post('', validateToken, (req, res) => {
-	const ent = req.body;
-	const newEntity = new Entity({
-		user: req.user.id,
-		title: ent.title,
-		content: ent.content,
-		codeSnippet: ent.codeSnippet,
-		likes: ent.likes,
-		dislikes: ent.dislikes,
-		comments: [],
-		modified: Date.now(),
-	});
+	Users.findById(req.user.id, (err, user) => {
+		if (user && !err) {
+			const ent = req.body;
+			const date = new Date(Date.now()).toString();
+			const newEntity = new Entity({
+				user: req.user.id,
+				title: ent.title,
+				content: ent.content,
+				codeSnippet: ent.codeSnippet,
+				likes: ent.likes,
+				dislikes: ent.dislikes,
+				comments: [],
+				modified: date,
+			});
 
-	newEntity.save((err, ent) => {
-		if (err) throw err;
-		Users.findOne({ _id: req.user.id }, (err, user) => {
-			if (err) throw err;
-			if (user) {
+			newEntity.save((err, ent) => {
+				if (err) throw err;
 				user.entities = user.entities.concat([ent.id]);
 				user.save((err) => {
 					if (err) throw err;
+					return res.send({ success: true });
 				});
-			} else return res.status(403).send({ success: false });
-		});
+			});
+		} else {
+			return res.status(403).send({ success: false });
+		}
 	});
-	return res.send({ success: true });
 });
 
 router.get('/entities', (_req, res) => {
@@ -41,18 +43,10 @@ router.get('/entities', (_req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-	Entity.findOne({ id: req.params.id }, (err, entity) => {
+	Entity.findById(req.params.id, (err, entity) => {
 		if (err) throw err;
 		if (entity) return res.send(entity);
 	});
-});
-
-router.post('/comment', validateToken, (req, res) => {
-	return res.sendStatus(200);
-});
-
-router.get('/comments', (req, res) => {
-	return res.sendStatus(200);
 });
 
 module.exports = router;

@@ -1,5 +1,9 @@
 <ng-template #loading>
-  <mat-spinner class="loading-spinner"></mat-spinner>
+  <mat-progress-bar
+    class="loading-bar"
+    color="accent"
+    mode="indeterminate"
+  ></mat-progress-bar>
 </ng-template>
 
 <ng-container *ngIf="(this.loading$ | async) === false; else loading">

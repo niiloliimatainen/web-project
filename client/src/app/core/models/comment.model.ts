@@ -1,6 +1,6 @@
 export interface Comment {
   user: string;
   entity: string;
-  comment: string;
+  content: string;
   modified: string;
 }
