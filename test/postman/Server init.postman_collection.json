@@ -1,0 +1,553 @@
+{
+	"info": {
+		"_postman_id": "9fc53799-a8f2-4ae5-917f-6f6c4605c946",
+		"name": "Server init",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Registered\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"testing@gmail.com\",\r\n    \"username\": \"doglover24\",\r\n    \"password\": \"Testitesti1!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{authUrl}}/register",
+					"host": ["{{authUrl}}"],
+					"path": ["register"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Logged in\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"pm.environment.set(\"jwt_token\", response.token);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"doglover24\",\r\n    \"password\": \"Testitesti1!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{authUrl}}/login",
+					"host": ["{{authUrl}}"],
+					"path": ["login"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create entity1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Entity created\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Look at my cool code\",\r\n    \"content\": \"This is my first ever code-snippet posted here\",\r\n    \"codeSnippet\": \"createEntity(entity: Entity): Observable<Entity[]> {\\n  return this.http.post<Entity[]>(`${this.entityUrl}`, entity, this.options);\\n}\",\r\n    \"likes\": 4,\r\n    \"dislikes\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{entityUrl}}",
+					"host": ["{{entityUrl}}"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create entity2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Entity created\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Is this made with best practises?\",\r\n    \"content\": \"It works, but I'm not sure that it is made with best practises? Can you give me some input?\",\r\n    \"codeSnippet\": \"const animals = ['pigs', 'goats', 'sheep'];\\nconst count = animals.push('cows');\\nconsole.log(count);\\n\\nconsole.log(animals);\",\r\n    \"likes\": 15,\r\n    \"dislikes\": 3\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{entityUrl}}",
+					"host": ["{{entityUrl}}"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Registered\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"testing2@gmail.com\",\r\n    \"username\": \"supercoder123\",\r\n    \"password\": \"Testitesti1!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{authUrl}}/register",
+					"host": ["{{authUrl}}"],
+					"path": ["register"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Logged in\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"pm.environment.set(\"jwt_token\", response.token);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": ["pm.environment.set(\"jwt_token\", '');"],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"testing2@gmail.com\",\r\n    \"password\": \"Testitesti1!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{authUrl}}/login",
+					"host": ["{{authUrl}}"],
+					"path": ["login"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create entity3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Entity created\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Check my one-liner quicksort\",\r\n    \"content\": \"If the list is empty, the sorted result is the empty list.If the list starts with the element x, and the rest of the list is xs, then the sorted result is list consisting of the sorted list consisting of all elements in xs less than x concatenated with the element x concatenated with the sorted list of all elements in xs larger than x. (or in other words - divide in two piles, all less than x and all larger than x, sort them both and create a list with the less-than pile, the element x, and the larger-than pile). Beats the understandability of the C version quite easily.\",\r\n    \"codeSnippet\": \"qsort[] = []\\nqsort (x:xs) = qsort (filter (< x) xs) ++ [x] ++ qsort (filter (>= x) xs)\",\r\n    \"likes\": 200,\r\n    \"dislikes\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{entityUrl}}",
+					"host": ["{{entityUrl}}"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get entities",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Entities has been obtained\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"\r",
+							"const res =  pm.response.json();\r",
+							"\r",
+							"pm.environment.set(\"entity1\", res[0]._id);\r",
+							"pm.environment.set(\"entity2\", res[1]._id);\r",
+							"pm.environment.set(\"entity3\", res[2]._id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Check my one-liner quicksort\",\r\n    \"content\": \"If the list is empty, the sorted result is the empty list.If the list starts with the element x, and the rest of the list is xs, then the sorted result is list consisting of the sorted list consisting of all elements in xs less than x concatenated with the element x concatenated with the sorted list of all elements in xs larger than x. (or in other words - divide in two piles, all less than x and all larger than x, sort them both and create a list with the less-than pile, the element x, and the larger-than pile). Beats the understandability of the C version quite easily.\",\r\n    \"codeSnippet\": \"qsort[] = []\\nqsort (x:xs) = qsort (filter (< x) xs) ++ [x] ++ qsort (filter (>= x) xs)\",\r\n    \"likes\": 200,\r\n    \"dislikes\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{entityUrl}}/entities",
+					"host": ["{{entityUrl}}"],
+					"path": ["entities"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create comment1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Comment created\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"content\": \"That is really cool code! Well done!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{commentUrl}}/{{entity1}}",
+					"host": ["{{commentUrl}}"],
+					"path": ["{{entity1}}"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create comment2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Comment created\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"content\": \"It's pretty bad. Go learn more\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{commentUrl}}/{{entity2}}",
+					"host": ["{{commentUrl}}"],
+					"path": ["{{entity2}}"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Logged in\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"pm.environment.set(\"jwt_token\", response.token);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"doglover24\",\r\n    \"password\": \"Testitesti1!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{authUrl}}/login",
+					"host": ["{{authUrl}}"],
+					"path": ["login"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create comment3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Comment created\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"content\": \"I don't like one-liners. Those are hard to understand\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{commentUrl}}/{{entity3}}",
+					"host": ["{{commentUrl}}"],
+					"path": ["{{entity3}}"]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer"
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [""]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [""]
+			}
+		}
+	]
+}

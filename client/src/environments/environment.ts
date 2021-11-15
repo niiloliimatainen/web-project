@@ -6,6 +6,7 @@ export const environment = {
   production: false,
 
   user_url: '/api/user',
+  entity_url: '/api/entity',
 };
 
 /*

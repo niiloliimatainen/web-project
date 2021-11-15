@@ -1,13 +1,10 @@
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpHeaders,
-} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Result } from '../models/result.model';
 import { catchError, shareReplay, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Observable, of } from 'rxjs';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -23,11 +20,15 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  register(email: string, password: string) {
+  register(
+    email: string,
+    username: string,
+    password: string
+  ): Observable<Result> {
     return this.http
       .post<Result>(
         `${this.userUrl}/register/`,
-        { email: email, password: password },
+        { email: email, username: username, password: password },
         this.options
       )
       .pipe(
@@ -37,11 +38,11 @@ export class AuthService {
       );
   }
 
-  login(email: string, password: string) {
+  login(username: string, password: string): Observable<Result> {
     return this.http
       .post<Result>(
         `${this.userUrl}/login/`,
-        { email: email, password: password },
+        { username: username, password: password },
         this.options
       )
       .pipe(
@@ -51,6 +52,11 @@ export class AuthService {
           return of({ success: false, status: error.status });
         })
       );
+  }
+
+  getUser(id: string): Observable<User> {
+    console.log(id);
+    return this.http.get<User>(`${this.userUrl}/${id}`, this.options);
   }
 
   logout() {
