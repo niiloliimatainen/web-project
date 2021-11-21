@@ -1,0 +1,25 @@
+<h2 mat-dialog-title>Add comment</h2>
+<div mat-dialog-content class="content-container">
+  <mat-form-field class="comment-area" appearance="fill" color="accent">
+    <mat-label>New comment</mat-label>
+    <textarea
+      rows="3"
+      matInput
+      [(ngModel)]="newComment"
+      color="accent"
+    ></textarea>
+  </mat-form-field>
+  <div class="btn-container">
+    <button mat-flat-button class="comment-btn" [mat-dialog-close]="true">
+      Close
+    </button>
+    <button
+      mat-flat-button
+      color="accent"
+      class="comment-btn"
+      (click)="this.addComment()"
+    >
+      Add
+    </button>
+  </div>
+</div>

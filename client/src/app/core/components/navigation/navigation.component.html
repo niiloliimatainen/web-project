@@ -4,24 +4,24 @@
   </button>
   <span class="header">My App</span>
   <span class="nav-spacer"></span>
-
   <button
     *ngIf="this.authService.isLoggedIn()"
-    mat-icon-button
-    class="nav-icon"
-    aria-label="Example icon-button with share icon"
+    class="user-icon-btn"
     (click)="this.authService.logout()"
   >
-    <mat-icon> account_circle </mat-icon>
+    <img
+      class="user-icon"
+      src="../../../../assets/placeholder.png"
+      alt="user"
+    />
   </button>
   <button
     *ngIf="!this.authService.isLoggedIn()"
     mat-icon-button
     class="nav-icon"
-    aria-label="Example icon-button with share icon"
-    (click)="openLogin()"
+    (click)="this.coreService.openLogin()"
   >
-    <mat-icon> vpn_key </mat-icon>
+    <span class="material-icons">login</span>
   </button>
 </mat-toolbar>
 

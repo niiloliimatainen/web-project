@@ -1,0 +1,109 @@
+<div class="layout-container">
+  <div>
+    <button mat-icon-button class="back-btn" routerLink="/">
+      <mat-icon>keyboard_backspace</mat-icon>
+    </button>
+    <h2 class="title">Create a new post</h2>
+  </div>
+  <div>
+    <mat-stepper [orientation]="orientation" linear="true" #stepper>
+      <mat-step [stepControl]="firstStep">
+        <form [formGroup]="firstStep">
+          <ng-template matStepLabel>Give a title</ng-template>
+          <mat-form-field appearance="fill" color="accent">
+            <mat-label>Title</mat-label>
+            <input matInput formControlName="title" required />
+          </mat-form-field>
+          <div>
+            <button
+              mat-button
+              color="accent"
+              class="stepper-btn"
+              matStepperNext
+            >
+              Next
+            </button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel>Text content</ng-template>
+        <div class="text-area-layout">
+          <mat-form-field
+            class="auto-text-area"
+            appearance="fill"
+            color="accent"
+          >
+            <mat-label>Text content</mat-label>
+            <textarea
+              matInput
+              cdkTextareaAutosize
+              #autosize="cdkTextareaAutosize"
+              cdkAutosizeMinRows="10"
+              cdkAutosizeMaxRows="50"
+              [(ngModel)]="textContent"
+            ></textarea>
+          </mat-form-field>
+          <div class="btn-container">
+            <button
+              mat-button
+              color="accent"
+              class="stepper-btn"
+              matStepperPrevious
+            >
+              Back
+            </button>
+            <button
+              mat-button
+              color="accent"
+              class="stepper-btn"
+              matStepperNext
+            >
+              Next
+            </button>
+          </div>
+        </div>
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel>Code snippet</ng-template>
+        <div class="text-area-layout">
+          <mat-form-field
+            class="auto-text-area"
+            appearance="fill"
+            color="accent"
+          >
+            <mat-label>Code snippet</mat-label>
+            <textarea
+              matInput
+              cdkTextareaAutosize
+              #autosize="cdkTextareaAutosize"
+              cdkAutosizeMinRows="10"
+              cdkAutosizeMaxRows="50"
+              [(ngModel)]="codeSnippet"
+            ></textarea>
+          </mat-form-field>
+          <div class="btn-container">
+            <button
+              mat-button
+              color="accent"
+              class="stepper-btn"
+              matStepperPrevious
+            >
+              Back
+            </button>
+            <button
+              mat-button
+              color="accent"
+              class="stepper-btn"
+              (click)="this.submit()"
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+      </mat-step>
+    </mat-stepper>
+  </div>
+</div>

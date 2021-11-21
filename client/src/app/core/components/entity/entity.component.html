@@ -1,27 +1,26 @@
-<ng-template #loading>
-  <mat-progress-bar
-    class="loading-bar"
-    color="accent"
-    mode="indeterminate"
-  ></mat-progress-bar>
-</ng-template>
+<div class="list-item">
+  <mat-list-item disableRipple="true" [routerLink]="['/post/', entity._id]">
+    <img
+      matListAvatar
+      id="list-item-icon"
+      src="../../../../assets/placeholder.png"
+      alt="user"
+    />
 
-<ng-container *ngIf="(this.loading$ | async) === false; else loading">
-  <div class="list-item">
-    <mat-list-item [routerLink]="['/', entity._id]">
-      <div class="vote-container">
-        <div class="vote-item">
-          <p class="vote-count">{{ entity.likes }}</p>
-          <mat-icon>thumb_up_alt</mat-icon>
+    <div class="container">
+      <div class="content-container">
+        <div class="header-container">
+          <p mat-line class="username">{{ entity.username }}</p>
+          <p class="timestamp">{{ entity.modified }}</p>
         </div>
-        <div class="vote-item">
-          <p class="vote-count">{{ entity.dislikes }}</p>
-          <mat-icon>thumb_down_alt</mat-icon>
-        </div>
+        <h3 class="content">{{ entity.title }}</h3>
       </div>
-
-      <h4 mat-line>{{ entity.title }}</h4>
-      <p mat-line>{{ user.username }}</p>
-    </mat-list-item>
-  </div>
-</ng-container>
+      <span class="spacer"></span>
+      <app-vote
+        *ngIf="!(isHandset$ | async)"
+        [likes]="entity.likes"
+        [dislikes]="entity.dislikes"
+      ></app-vote>
+    </div>
+  </mat-list-item>
+</div>

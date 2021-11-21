@@ -23,9 +23,10 @@ router.get('/:entityId', (req, res) => {
 });
 
 function createComment(req, res) {
-	const date = new Date(Date.now()).toString();
+	const date = new Date(Date.now()).toLocaleString();
 	const newComment = new Comment({
-		user: req.user.id,
+		userId: req.user.id,
+		username: req.user.username,
 		entity: req.params.entityId,
 		content: req.body.content,
 		modified: date,
@@ -35,7 +36,7 @@ function createComment(req, res) {
 		if (err) return res.status(403).send({ success: false });
 		saveUser(req.user.id, comment.id);
 		saveEntity(req.params.entityId, comment.id);
-		return res.send({ success: true });
+		return res.send(comment);
 	});
 }
 

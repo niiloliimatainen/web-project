@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Subject, Subscription } from 'rxjs';
 import { indicate } from 'src/app/shared/utils/indicator';
 import { Entity } from '../../models/entity.model';
+import { CoreService } from '../../services/core.service';
 import { EntityService } from '../../services/entity.service';
 
 @Component({
@@ -14,7 +15,10 @@ export class DashboardComponent {
   loading$ = new Subject<boolean>();
   entityList: Entity[] = [] as Entity[];
 
-  constructor(private entityService: EntityService) {
+  constructor(
+    private entityService: EntityService,
+    public coreService: CoreService
+  ) {
     this.entitySubscription = this.entityService
       .getEntities()
       .pipe(indicate(this.loading$))

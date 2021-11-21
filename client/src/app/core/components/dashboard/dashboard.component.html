@@ -4,7 +4,18 @@
 
 <ng-container *ngIf="(this.loading$ | async) === false; else loading">
   <div class="dashboard-container">
-    <h2 class="header">All code snippets</h2>
+    <div class="header-container">
+      <h2 class="header">All code snippets</h2>
+      <span class="spacer"></span>
+      <button
+        mat-flat-button
+        color="accent"
+        class="create-btn"
+        (click)="this.coreService.openCreateEntity()"
+      >
+        Create
+      </button>
+    </div>
     <mat-divider></mat-divider>
     <mat-nav-list>
       <app-entity

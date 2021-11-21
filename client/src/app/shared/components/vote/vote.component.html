@@ -1,0 +1,24 @@
+<div class="vote-container">
+  <div class="vote-item">
+    <span class="vote-count">{{ likes }}</span>
+    <button
+      mat-icon-button
+      class="vote-btn"
+      (click)="this.coreService.voteUp($event)"
+      routerLink="null"
+    >
+      <mat-icon>thumb_up_alt</mat-icon>
+    </button>
+  </div>
+  <div class="vote-item">
+    <span class="vote-count">{{ dislikes }}</span>
+    <button
+      mat-icon-button
+      class="vote-btn"
+      (click)="this.coreService.voteDown($event)"
+      routerLink="null"
+    >
+      <mat-icon>thumb_down_alt</mat-icon>
+    </button>
+  </div>
+</div>
