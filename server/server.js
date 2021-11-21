@@ -7,6 +7,7 @@ const port = 1234;
 const userRoutes = require('./api/user-routes');
 const entityRoutes = require('./api/entity-routes.js');
 const commentRoutes = require('./api/comment-routes.js');
+const imageRoutes = require('./api/image-routes.js');
 
 const mongoDB = 'mongodb://localhost:27017/testdb';
 mongoose.connect(mongoDB);
@@ -26,6 +27,8 @@ app.use('/api/user', userRoutes);
 app.use('/api/entity', entityRoutes);
 
 app.use('/api/comment', commentRoutes);
+
+app.use('/api/image', imageRoutes);
 
 app.use('*', (req, res) => {
 	res.status(404).send('Invalid url');

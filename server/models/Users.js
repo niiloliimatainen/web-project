@@ -7,6 +7,7 @@ let usersSchema = new Schema({
 	password: String,
 	entities: Array,
 	comments: Array,
+	ImageId: String,
 });
 
 module.exports = mongoose.model('users', usersSchema);
