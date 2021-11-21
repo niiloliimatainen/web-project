@@ -45,7 +45,9 @@ router.post('/login', (req, res) => {
 					};
 					jwt.sign(jwtPayload, process.env.SECRET, (err, token) => {
 						if (err) throw err;
-						return res.status(200).send({ success: true, token });
+						return res
+							.status(200)
+							.send({ success: true, userId: user._id, token });
 					});
 				});
 			} else return res.status(403).send({ success: false });
@@ -71,6 +73,7 @@ function createUser(req, res) {
 				password: hash,
 				entities: [],
 				comments: [],
+				profilePicture: req.body.profilePicture,
 			});
 			newUser.save((err) => {
 				if (err) throw err;

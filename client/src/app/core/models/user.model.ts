@@ -4,4 +4,5 @@ export interface User {
   password: string;
   entities: string[];
   comments: string[];
+  imageId: string;
 }

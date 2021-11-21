@@ -11,6 +11,8 @@ import { User } from '../models/user.model';
 })
 export class AuthService {
   private readonly userUrl = environment.user_url;
+  private readonly imageUrl = environment.image_url;
+
   private options = {
     headers: new HttpHeaders({
       'content-type': 'application/json',
@@ -38,6 +40,12 @@ export class AuthService {
       );
   }
 
+  setImage(img: File) {
+    var formData = new FormData();
+    formData.append('image', img);
+    return this.http.post<Result>(`${this.imageUrl}`, formData);
+  }
+
   login(username: string, password: string): Observable<Result> {
     return this.http
       .post<Result>(
@@ -60,6 +68,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('access_token');
+    localStorage.removeItem('user_id');
   }
 
   isLoggedIn() {
@@ -68,5 +77,6 @@ export class AuthService {
 
   private setToken(res: Result) {
     if (res.token) localStorage.setItem('access_token', res.token);
+    if (res.userId) localStorage.setItem('user_id', res.userId);
   }
 }

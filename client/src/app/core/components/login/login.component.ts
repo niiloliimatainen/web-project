@@ -14,6 +14,7 @@ export class LoginComponent {
   visible: boolean = false;
   confirmVisible: boolean = false;
   loginPage: boolean = true;
+  newImage: FileList | null = null;
 
   loginForm: FormGroup = new FormGroup({
     username: new FormControl('', [Validators.required]),
@@ -78,8 +79,15 @@ export class LoginComponent {
     }
   }
 
+  onImageChange(event: Event) {
+    const element = event.currentTarget as HTMLInputElement;
+    console.log(element.files);
+    this.newImage = element.files;
+  }
+
   private handleResponse(res: Result) {
     if (res.success) {
+      this.setImage();
       this.loginPage = true;
       this.alert('Registration completed');
       this.registerForm.reset();
@@ -91,6 +99,14 @@ export class LoginComponent {
       this.alert('Password is not strong enough');
     } else if (res.status === 404) {
       this.alert('Username is already in use');
+    }
+  }
+
+  private setImage() {
+    if (this.newImage?.length === 1) {
+      this.authService.setImage(this.newImage[0]).subscribe((res) => {
+        console.log(res);
+      });
     }
   }
 

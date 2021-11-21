@@ -7,7 +7,7 @@
 }
 
 .header-container {
-  margin: 20px 0px;
+  margin: 10px 0px;
 }
 
 .header {
@@ -42,9 +42,14 @@ input {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-bottom: 35px;
+  margin-bottom: 16px;
 }
 
 .register-link {
   margin-top: 25px;
+}
+
+.file-input {
+  margin-bottom: 35px;
+  margin-left: 40px;
 }

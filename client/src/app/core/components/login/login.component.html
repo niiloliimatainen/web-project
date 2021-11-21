@@ -116,6 +116,10 @@
           </button>
         </mat-form-field>
       </form>
+      <form enctype="multipart/form-data" class="file-input">
+        <input (change)="onImageChange($event)" type="file" accept="image/*" />
+      </form>
+
       <button mat-flat-button color="accent" (click)="register()">
         Register
       </button>
