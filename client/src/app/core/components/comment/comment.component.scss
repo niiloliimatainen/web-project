@@ -1,3 +1,38 @@
 .comment .mat-list-item {
   cursor: default;
+  display: flex;
+  align-items: center;
+  padding: 10px 0px;
+  overflow-x: scroll;
+  height: auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 8px;
+  margin-left: 10px;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+}
+
+.timestamp {
+  font-size: 12px;
+  margin-bottom: 0;
+  margin-left: 4px;
+}
+
+.username {
+  margin-bottom: 0;
+  margin-right: 4px;
+  font-weight: 500;
+}
+
+.content {
+  margin-bottom: 0;
 }

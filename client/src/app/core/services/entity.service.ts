@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Entity } from '../models/entity.model';
 import { Comment } from '../models/comment.model';
+import { Result } from '../models/result.model';
 
 @Injectable({
   providedIn: 'root',
@@ -28,18 +29,26 @@ export class EntityService {
     return this.http.get<Entity>(`${this.entityUrl}/${id}`, this.options);
   }
 
-  createEntity(entity: Entity): Observable<Entity[]> {
-    return this.http.post<Entity[]>(`${this.entityUrl}`, entity, this.options);
+  createEntity(
+    title: string,
+    textContent: string,
+    codeSnippet: string
+  ): Observable<Result> {
+    return this.http.post<Result>(
+      `${this.entityUrl}`,
+      { title: title, content: textContent, codeSnippet: codeSnippet },
+      this.options
+    );
   }
 
   getComments(id: string): Observable<Comment[]> {
     return this.http.get<Comment[]>(`${this.commentUrl}/${id}`, this.options);
   }
 
-  createComment(comment: Comment): Observable<Comment> {
+  createComment(content: string, entityId: string): Observable<Comment> {
     return this.http.post<Comment>(
-      `${this.entityUrl}/comment`,
-      comment,
+      `${this.commentUrl}/${entityId}`,
+      { content: content },
       this.options
     );
   }

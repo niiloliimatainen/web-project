@@ -8,15 +8,15 @@ router.post('', validateToken, (req, res) => {
 	Users.findById(req.user.id, (err, user) => {
 		if (user && !err) {
 			const ent = req.body;
-			const date = new Date(Date.now()).toString();
+			const date = new Date(Date.now()).toLocaleString();
 			const newEntity = new Entity({
 				userId: req.user.id,
 				username: req.user.username,
 				title: ent.title,
 				content: ent.content,
 				codeSnippet: ent.codeSnippet,
-				likes: ent.likes,
-				dislikes: ent.dislikes,
+				likes: 0,
+				dislikes: 0,
 				comments: [],
 				modified: date,
 			});
