@@ -11,7 +11,8 @@
   >
     <img
       class="user-icon"
-      src="../../../../assets/placeholder.png"
+      [src]="this.coreService.getUserImage(this.userId)"
+      onerror="this.src='../../../../assets/placeholder.png';"
       alt="user"
     />
   </button>

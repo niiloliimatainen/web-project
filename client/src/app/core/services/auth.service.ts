@@ -40,9 +40,10 @@ export class AuthService {
       );
   }
 
-  setImage(img: File) {
+  setImage(img: File, userId: string) {
     var formData = new FormData();
     formData.append('image', img);
+    formData.append('userId', userId);
     return this.http.post<Result>(`${this.imageUrl}`, formData);
   }
 
@@ -73,6 +74,10 @@ export class AuthService {
 
   isLoggedIn() {
     return localStorage.getItem('access_token') !== null;
+  }
+
+  getUserId(): string | null {
+    return localStorage.getItem('user_id');
   }
 
   private setToken(res: Result) {

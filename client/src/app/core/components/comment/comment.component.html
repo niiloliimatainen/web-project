@@ -2,8 +2,9 @@
   <mat-list-item disableRipple>
     <img
       matListAvatar
-      id="list-item-icon"
-      src="../../../../assets/placeholder.png"
+      class="list-item-icon"
+      [src]="this.coreService.getUserImage(this.comment.userId)"
+      onerror="this.src='../../../../assets/placeholder.png';"
       alt="user"
     />
     <div class="container">

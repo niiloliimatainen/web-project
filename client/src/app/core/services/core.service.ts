@@ -114,6 +114,11 @@ export class CoreService {
     return this.newComment.asObservable();
   }
 
+  getUserImage(userId: string | null): string {
+    if (userId) return `http://localhost:1234/api/image/${userId}`;
+    else return '';
+  }
+
   ngOnDestroy(): void {
     this.breakpointSubscription.unsubscribe();
   }

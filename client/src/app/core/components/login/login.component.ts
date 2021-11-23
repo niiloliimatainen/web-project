@@ -81,13 +81,12 @@ export class LoginComponent {
 
   onImageChange(event: Event) {
     const element = event.currentTarget as HTMLInputElement;
-    console.log(element.files);
     this.newImage = element.files;
   }
 
   private handleResponse(res: Result) {
-    if (res.success) {
-      this.setImage();
+    if (res.success && res.userId) {
+      this.setImage(res.userId);
       this.loginPage = true;
       this.alert('Registration completed');
       this.registerForm.reset();
@@ -102,9 +101,9 @@ export class LoginComponent {
     }
   }
 
-  private setImage() {
+  private setImage(userId: string) {
     if (this.newImage?.length === 1) {
-      this.authService.setImage(this.newImage[0]).subscribe((res) => {
+      this.authService.setImage(this.newImage[0], userId).subscribe((res) => {
         console.log(res);
       });
     }

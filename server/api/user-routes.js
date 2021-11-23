@@ -73,11 +73,11 @@ function createUser(req, res) {
 				password: hash,
 				entities: [],
 				comments: [],
-				profilePicture: req.body.profilePicture,
+				imageId: '',
 			});
-			newUser.save((err) => {
+			newUser.save((err, user) => {
 				if (err) throw err;
-				return res.send({ success: true });
+				return res.send({ success: true, userId: user.id });
 			});
 		});
 	});

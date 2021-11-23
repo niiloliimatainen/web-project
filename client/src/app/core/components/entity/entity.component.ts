@@ -21,7 +21,7 @@ export class EntityComponent implements OnInit {
   private userSubscription: Subscription | undefined;
 
   constructor(
-    private authService: AuthService,
+    public authService: AuthService,
     public coreService: CoreService,
     private breakpointService: BreakpointService
   ) {}
