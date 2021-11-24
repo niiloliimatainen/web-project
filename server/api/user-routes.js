@@ -45,9 +45,11 @@ router.post('/login', (req, res) => {
 					};
 					jwt.sign(jwtPayload, process.env.SECRET, (err, token) => {
 						if (err) throw err;
-						return res
-							.status(200)
-							.send({ success: true, userId: user._id, token });
+						return res.status(200).send({
+							success: true,
+							userId: user._id,
+							token,
+						});
 					});
 				});
 			} else return res.status(403).send({ success: false });
@@ -77,7 +79,10 @@ function createUser(req, res) {
 			});
 			newUser.save((err, user) => {
 				if (err) throw err;
-				return res.send({ success: true, userId: user.id });
+				return res.send({
+					success: true,
+					userId: user.id,
+				});
 			});
 		});
 	});

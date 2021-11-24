@@ -6,11 +6,11 @@ import { Result } from '../../models/result.model';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: 'app-login-registration',
+  templateUrl: './login-registration.component.html',
+  styleUrls: ['./login-registration.component.scss'],
 })
-export class LoginComponent {
+export class LoginRegistrationComponent {
   visible: boolean = false;
   confirmVisible: boolean = false;
   loginPage: boolean = true;
@@ -36,7 +36,7 @@ export class LoginComponent {
 
   constructor(
     private authService: AuthService,
-    private dialogRef: MatDialogRef<LoginComponent>,
+    private dialogRef: MatDialogRef<LoginRegistrationComponent>,
     private _snackBar: MatSnackBar
   ) {}
 

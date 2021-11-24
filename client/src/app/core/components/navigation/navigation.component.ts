@@ -8,11 +8,8 @@ import { CoreService } from '../../services/core.service';
   styleUrls: ['./navigation.component.scss'],
 })
 export class NavigationComponent {
-  userId: string | null;
   constructor(
     public authService: AuthService,
     public coreService: CoreService
-  ) {
-    this.userId = this.authService.getUserId();
-  }
+  ) {}
 }

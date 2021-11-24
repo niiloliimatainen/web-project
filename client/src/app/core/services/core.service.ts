@@ -3,7 +3,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { AddCommentComponent } from '../components/add-comment/add-comment.component';
-import { LoginComponent } from '../components/login/login.component';
+import { LoginRegistrationComponent } from '../components/login-registration/login-registration.component';
 import { Comment } from '../models/comment.model';
 import { AuthService } from './auth.service';
 import { BreakpointService } from './breakpoint.service';
@@ -14,7 +14,7 @@ import { EntityService } from './entity.service';
 })
 export class CoreService {
   private breakpointSubscription: Subscription;
-  private loginDialogRef: MatDialogRef<LoginComponent> | undefined;
+  private loginDialogRef: MatDialogRef<LoginRegistrationComponent> | undefined;
   private commentDialogRef: MatDialogRef<AddCommentComponent> | undefined;
   private isHandset: boolean = false;
   private activeEntity: string = '';
@@ -67,7 +67,7 @@ export class CoreService {
 
   openLogin() {
     if (this.isHandset) {
-      this.loginDialogRef = this.dialog.open(LoginComponent, {
+      this.loginDialogRef = this.dialog.open(LoginRegistrationComponent, {
         width: '100%',
         height: '80%',
         maxWidth: '100%',
@@ -79,10 +79,10 @@ export class CoreService {
         },
       });
     } else {
-      this.loginDialogRef = this.dialog.open(LoginComponent, {
-        width: '35vw',
+      this.loginDialogRef = this.dialog.open(LoginRegistrationComponent, {
+        width: '370px',
         minWidth: '300px',
-        height: '60vh',
+        height: '600px',
         minHeight: '600px',
       });
     }

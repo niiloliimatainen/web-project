@@ -1,29 +1,45 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="toolbar">
   <button mat-icon-button class="nav-icon logo" routerLink="/">
     <mat-icon>dashboard</mat-icon>
   </button>
   <span class="header">My App</span>
-  <span class="nav-spacer"></span>
-  <button
-    *ngIf="this.authService.isLoggedIn()"
-    class="user-icon-btn"
-    (click)="this.authService.logout()"
-  >
+  <span class="spacer"></span>
+
+  <div *ngIf="this.authService.isLoggedIn()" class="user-container">
     <img
       class="user-icon"
-      [src]="this.coreService.getUserImage(this.userId)"
+      [src]="this.coreService.getUserImage(this.authService.getUserId())"
       onerror="this.src='../../../../assets/placeholder.png';"
       alt="user"
     />
-  </button>
-  <button
-    *ngIf="!this.authService.isLoggedIn()"
-    mat-icon-button
-    class="nav-icon"
-    (click)="this.coreService.openLogin()"
-  >
-    <span class="material-icons">login</span>
-  </button>
+    <button
+      class="user-icon-btn"
+      mat-icon-button
+      [matMenuTriggerFor]="userMenu"
+    >
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </button>
+  </div>
+
+  <div *ngIf="!this.authService.isLoggedIn()" class="user-container">
+    <span class="sign-in-text">Sign in</span>
+    <button
+      mat-icon-button
+      class="nav-icon"
+      (click)="this.coreService.openLogin()"
+    >
+      <span class="material-icons">login</span>
+    </button>
+  </div>
 </mat-toolbar>
+
+<mat-menu #userMenu="matMenu">
+  <button mat-menu-item>
+    <span> View profile</span>
+  </button>
+  <button mat-menu-item (click)="this.authService.logout()">
+    <span>Log out</span>
+  </button>
+</mat-menu>
 
 <router-outlet></router-outlet>

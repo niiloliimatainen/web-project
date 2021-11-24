@@ -8,9 +8,9 @@
 </button>
 
 <div mat-dialog-content>
-  <ng-container *ngIf="loginPage">
+  <div *ngIf="loginPage" class="login-container">
     <div class="header-container">
-      <h1 class="header">Sign-in</h1>
+      <h1 class="sign-in-header header">Sign-in</h1>
     </div>
     <div class="content">
       <form class="input-container" [formGroup]="loginForm">
@@ -48,11 +48,11 @@
         >Don't have an account yet? Register here</a
       >
     </div>
-  </ng-container>
+  </div>
 
-  <ng-container *ngIf="!loginPage">
+  <div *ngIf="!loginPage" class="registration-container">
     <div class="header-container">
-      <h1 class="header">Register</h1>
+      <h1 class="register-header header">Register</h1>
     </div>
     <div class="content">
       <form class="input-container" [formGroup]="registerForm">
@@ -124,5 +124,5 @@
         Register
       </button>
     </div>
-  </ng-container>
+  </div>
 </div>
