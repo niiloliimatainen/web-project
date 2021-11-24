@@ -1,22 +1,28 @@
 <div class="vote-container">
   <div class="vote-item">
-    <span class="vote-count">{{ likes }}</span>
+    <span class="vote-count">{{ entity.likes }}</span>
     <button
+      [ngClass]="{
+        'not-voted-icon': !this.hasLiked,
+        'liked-icon': this.hasLiked
+      }"
       mat-icon-button
       class="vote-btn"
-      (click)="this.coreService.voteUp($event)"
-      routerLink="null"
+      (click)="this.vote($event, true)"
     >
       <mat-icon>thumb_up_alt</mat-icon>
     </button>
   </div>
   <div class="vote-item">
-    <span class="vote-count">{{ dislikes }}</span>
+    <span class="vote-count">{{ entity.dislikes }}</span>
     <button
+      [ngClass]="{
+        'not-voted-icon': !this.hasDisliked,
+        'disliked-icon': this.hasDisliked
+      }"
       mat-icon-button
       class="vote-btn"
-      (click)="this.coreService.voteDown($event)"
-      routerLink="null"
+      (click)="this.vote($event, false)"
     >
       <mat-icon>thumb_down_alt</mat-icon>
     </button>

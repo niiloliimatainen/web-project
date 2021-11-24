@@ -11,6 +11,8 @@ let entitySchema = new Schema({
 	comments: Array,
 	likes: Number,
 	dislikes: Number,
+	likedUsers: Array,
+	dislikedUsers: Array,
 });
 
 module.exports = mongoose.model('entity', entitySchema);

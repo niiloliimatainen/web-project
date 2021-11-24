@@ -88,20 +88,6 @@ export class CoreService {
     }
   }
 
-  voteUp(event: MouseEvent) {
-    event.stopPropagation();
-    if (!this.authService.isLoggedIn()) return this.openLogin();
-
-    console.log('later');
-  }
-
-  voteDown(event: MouseEvent) {
-    event.stopPropagation();
-    if (!this.authService.isLoggedIn()) return this.openLogin();
-
-    console.log('later');
-  }
-
   setActiveEntity(id: string) {
     this.activeEntity = id;
   }

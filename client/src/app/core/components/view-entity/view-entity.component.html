@@ -22,10 +22,7 @@
           <p class="timestamp">{{ this.entity.modified }}</p>
         </div>
         <span class="spacer"></span>
-        <app-vote
-          [likes]="entity.likes"
-          [dislikes]="entity.dislikes"
-        ></app-vote>
+        <app-vote [entity]="entity"></app-vote>
       </div>
     </div>
     <div class="content-container">

@@ -50,6 +50,7 @@ export class LoginRegistrationComponent {
         if (res.success) {
           this.dialogRef.close();
           this.alert('Logged in');
+          this.authService.setLoginEvent();
         } else {
           this.alert('Invalid credentials');
         }

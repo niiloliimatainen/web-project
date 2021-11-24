@@ -52,4 +52,12 @@ export class EntityService {
       this.options
     );
   }
+
+  vote(id: string, liked: boolean) {
+    const body = { id: id, like: false, dislike: false };
+    if (liked) body.like = true;
+    else body.dislike = true;
+
+    return this.http.post<Result>(`${this.entityUrl}/vote`, body, this.options);
+  }
 }

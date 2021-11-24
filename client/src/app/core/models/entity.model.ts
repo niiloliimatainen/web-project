@@ -9,4 +9,6 @@ export interface Entity {
   comments: string[];
   likes: number;
   dislikes: number;
+  likedUsers: string[];
+  dislikedUsers: string[];
 }

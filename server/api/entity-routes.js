@@ -17,15 +17,17 @@ router.post('', validateToken, (req, res) => {
 				codeSnippet: ent.codeSnippet,
 				likes: 0,
 				dislikes: 0,
+				likedUsers: [],
+				dislikedUsers: [],
 				comments: [],
 				modified: date,
 			});
 
 			newEntity.save((err, ent) => {
-				if (err) throw err;
+				if (err) return res.status(403).send({ success: false });
 				user.entities = user.entities.concat([ent.id]);
 				user.save((err) => {
-					if (err) throw err;
+					if (err) return res.status(403).send({ success: false });
 					return res.send({ success: true });
 				});
 			});
@@ -35,9 +37,31 @@ router.post('', validateToken, (req, res) => {
 	});
 });
 
+router.post('/vote', validateToken, (req, res) => {
+	Entity.findById(req.body.id, (err, entity) => {
+		if (err) return res.status(403).send({ success: false });
+		if (entity) {
+			if (req.body.like) {
+				entity.likes = entity.likes + 1;
+				entity.likedUsers = entity.likedUsers.concat([req.user.id]);
+			} else {
+				entity.dislikes = entity.dislikes + 1;
+				entity.dislikedUsers = entity.dislikedUsers.concat([req.user.id]);
+			}
+
+			entity.save((err) => {
+				if (err) return res.status(403).send({ success: false });
+				return res.send({ success: true });
+			});
+		} else {
+			return res.status(403).send({ success: false });
+		}
+	});
+});
+
 router.get('/entities', (_req, res) => {
 	Entity.find({}, (err, entities) => {
-		if (err) throw err;
+		if (err) return res.status(403).send({ success: false });
 		if (entities) return res.send(entities);
 		return res.sendStatus(204);
 	});
@@ -45,7 +69,7 @@ router.get('/entities', (_req, res) => {
 
 router.get('/:id', (req, res) => {
 	Entity.findById(req.params.id, (err, entity) => {
-		if (err) throw err;
+		if (err) return res.status(403).send({ success: false });
 		if (entity) return res.send(entity);
 	});
 });
