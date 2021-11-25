@@ -15,10 +15,34 @@ router.post('/:entityId', validateToken, (req, res) => {
 	});
 });
 
+router.put('/update/:id', validateToken, (req, res) => {
+	Comment.findById(req.params.id, (err, comment) => {
+		if (err) return res.status(403).send({ success: false });
+		if (comment) {
+			const date = new Date(Date.now()).toLocaleString();
+			comment.content = req.body.content;
+			comment.modified = date;
+			comment.save((err, comment) => {
+				if (err) return res.status(403).send({ success: false });
+				return res.send(comment);
+			});
+		} else {
+			return res.status(403).send({ success: false });
+		}
+	});
+});
+
 router.get('/:entityId', (req, res) => {
 	Comment.find({ entity: req.params.entityId }, (err, comments) => {
 		if (err) return res.status(403).send({ success: false });
 		return res.send(comments);
+	});
+});
+
+router.delete('/delete/:id', (req, res) => {
+	Comment.findByIdAndDelete(req.params.id, (err) => {
+		if (err) return res.status(403).send({ success: false });
+		return res.send({ success: true });
 	});
 });
 

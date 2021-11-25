@@ -1,0 +1,24 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { LoginRegistrationComponent } from './login-registration.component';
+
+describe('LoginComponent', () => {
+  let component: LoginRegistrationComponent;
+  let fixture: ComponentFixture<LoginRegistrationComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [LoginRegistrationComponent],
+    }).compileComponents();
+  });
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(LoginRegistrationComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

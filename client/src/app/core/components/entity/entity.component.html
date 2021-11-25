@@ -2,11 +2,11 @@
   <mat-list-item disableRipple="true" [routerLink]="['/post/', entity._id]">
     <img
       matListAvatar
-      id="list-item-icon"
-      src="../../../../assets/placeholder.png"
+      class="list-item-icon"
+      [src]="this.coreService.getUserImage(this.entity.userId)"
+      onerror="this.src='../../../../assets/placeholder.png';"
       alt="user"
     />
-
     <div class="container">
       <div class="content-container">
         <div class="header-container">
@@ -16,11 +16,7 @@
         <h3 class="content">{{ entity.title }}</h3>
       </div>
       <span class="spacer"></span>
-      <app-vote
-        *ngIf="!(isHandset$ | async)"
-        [likes]="entity.likes"
-        [dislikes]="entity.dislikes"
-      ></app-vote>
+      <app-vote *ngIf="!(isHandset$ | async)" [entity]="entity"></app-vote>
     </div>
   </mat-list-item>
 </div>

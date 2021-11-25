@@ -1,12 +1,17 @@
 <div class="layout-container">
   <div>
-    <button mat-icon-button class="back-btn" routerLink="/">
+    <button
+      mat-icon-button
+      class="back-btn"
+      (click)="this.coreService.navigateBack()"
+    >
       <mat-icon>keyboard_backspace</mat-icon>
     </button>
-    <h2 class="title">Create a new post</h2>
+    <h2 *ngIf="!this.editMode" class="title">Create a new post</h2>
+    <h2 *ngIf="this.editMode" class="title">Edit your post</h2>
   </div>
   <div>
-    <mat-stepper [orientation]="orientation" linear="true" #stepper>
+    <mat-stepper [orientation]="orientation" [linear]="!this.editMode" #stepper>
       <mat-step [stepControl]="firstStep">
         <form [formGroup]="firstStep">
           <ng-template matStepLabel>Give a title</ng-template>
@@ -85,22 +90,43 @@
             ></textarea>
           </mat-form-field>
           <div class="btn-container">
-            <button
-              mat-button
-              color="accent"
-              class="stepper-btn"
-              matStepperPrevious
-            >
-              Back
-            </button>
-            <button
-              mat-button
-              color="accent"
-              class="stepper-btn"
-              (click)="this.submit()"
-            >
-              Submit
-            </button>
+            <ng-container *ngIf="!this.editMode">
+              <button
+                mat-button
+                color="accent"
+                class="stepper-btn"
+                matStepperPrevious
+              >
+                Back
+              </button>
+              <button
+                mat-button
+                color="accent"
+                class="stepper-btn"
+                (click)="this.submit()"
+              >
+                Submit
+              </button>
+            </ng-container>
+
+            <ng-container *ngIf="this.editMode">
+              <button
+                mat-button
+                color="accent"
+                class="stepper-btn"
+                matStepperPrevious
+              >
+                Back
+              </button>
+              <button
+                mat-button
+                color="accent"
+                class="stepper-btn"
+                (click)="this.update()"
+              >
+                Save
+              </button>
+            </ng-container>
           </div>
         </div>
       </mat-step>

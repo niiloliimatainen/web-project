@@ -1,4 +1,8 @@
-.nav-spacer {
+.user-container {
+  display: flex;
+}
+
+.spacer {
   flex: 1 1 auto;
 }
 
@@ -14,9 +18,14 @@
 }
 
 .user-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.sign-in-text {
   display: block;
-  max-width: 35px;
-  max-height: 35px;
-  width: auto;
-  height: auto;
+  margin: auto;
+  font-size: 16px;
 }

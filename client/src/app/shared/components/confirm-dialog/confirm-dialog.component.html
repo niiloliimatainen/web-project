@@ -1,0 +1,22 @@
+<div class="confirm-container">
+  <div class="title-container">
+    <h3 class="confirm-title">Are you sure?</h3>
+  </div>
+  <div class="button-container">
+    <button
+      class="confirm-button"
+      mat-raised-button
+      (click)="closeDialog(false)"
+    >
+      Cancel
+    </button>
+    <button
+      class="confirm-button"
+      mat-raised-button
+      color="accent"
+      (click)="closeDialog(true)"
+    >
+      Ok
+    </button>
+  </div>
+</div>

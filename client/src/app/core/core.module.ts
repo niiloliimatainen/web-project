@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { MaterialModule } from '../material/material.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { LoginComponent } from './components/login/login.component';
+import { LoginRegistrationComponent } from './components/login-registration/login-registration.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EntityComponent } from './components/entity/entity.component';
 import { ViewEntityComponent } from './components/view-entity/view-entity.component';
@@ -23,7 +23,7 @@ import { AddCommentComponent } from './components/add-comment/add-comment.compon
   declarations: [
     NavigationComponent,
     DashboardComponent,
-    LoginComponent,
+    LoginRegistrationComponent,
     EntityComponent,
     ViewEntityComponent,
     CommentComponent,

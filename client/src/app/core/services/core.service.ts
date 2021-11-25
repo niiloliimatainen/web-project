@@ -1,31 +1,33 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { AddCommentComponent } from '../components/add-comment/add-comment.component';
-import { LoginComponent } from '../components/login/login.component';
+import { LoginRegistrationComponent } from '../components/login-registration/login-registration.component';
 import { Comment } from '../models/comment.model';
 import { AuthService } from './auth.service';
 import { BreakpointService } from './breakpoint.service';
-import { EntityService } from './entity.service';
+import { Location } from '@angular/common';
+import { Entity } from '../models/entity.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CoreService {
+export class CoreService implements OnDestroy {
   private breakpointSubscription: Subscription;
-  private loginDialogRef: MatDialogRef<LoginComponent> | undefined;
+  private loginDialogRef: MatDialogRef<LoginRegistrationComponent> | undefined;
   private commentDialogRef: MatDialogRef<AddCommentComponent> | undefined;
   private isHandset: boolean = false;
-  private activeEntity: string = '';
+  private activeEntity: Entity = {} as Entity;
   private newComment = new Subject<Comment>();
+  private modifiedComment = new Subject<Comment>();
 
   constructor(
-    private entityService: EntityService,
     private dialog: MatDialog,
     private authService: AuthService,
     private breakpointService: BreakpointService,
-    private router: Router
+    private router: Router,
+    private location: Location
   ) {
     this.breakpointSubscription = this.breakpointService.isHandset$.subscribe(
       (isHandsetPortrait) => {
@@ -36,38 +38,48 @@ export class CoreService {
     );
   }
 
-  openCreateEntity() {
-    if (!this.authService.isLoggedIn()) this.openLogin();
+  openCreateEntity(editMode: boolean) {
+    if (!this.authService.isLoggedIn()) return this.openLogin();
+    if (editMode) this.router.navigate(['/edit']);
     else this.router.navigate(['/create']);
   }
 
-  openAddComment() {
+  openAddComment(comment: Comment | null) {
     if (!this.authService.isLoggedIn()) return this.openLogin();
 
     if (this.isHandset) {
       this.commentDialogRef = this.dialog.open(AddCommentComponent, {
         width: '80%',
         maxWidth: '80%',
+        data: comment,
       });
     } else {
       this.commentDialogRef = this.dialog.open(AddCommentComponent, {
-        width: '50%',
+        width: '480px',
         maxWidth: '480px',
+        data: comment,
       });
     }
 
-    const dialogSub =
+    const newCommentSub =
       this.commentDialogRef.componentInstance.commentAdded.subscribe((res) =>
         this.newComment.next(res)
       );
-    this.commentDialogRef
-      .afterClosed()
-      .subscribe(() => dialogSub.unsubscribe());
+
+    const commentModifiedSub =
+      this.commentDialogRef.componentInstance.commentModified.subscribe((res) =>
+        this.modifiedComment.next(res)
+      );
+
+    this.commentDialogRef.afterClosed().subscribe(() => {
+      newCommentSub.unsubscribe();
+      commentModifiedSub.unsubscribe();
+    });
   }
 
   openLogin() {
     if (this.isHandset) {
-      this.loginDialogRef = this.dialog.open(LoginComponent, {
+      this.loginDialogRef = this.dialog.open(LoginRegistrationComponent, {
         width: '100%',
         height: '80%',
         maxWidth: '100%',
@@ -79,39 +91,38 @@ export class CoreService {
         },
       });
     } else {
-      this.loginDialogRef = this.dialog.open(LoginComponent, {
-        width: '35vw',
+      this.loginDialogRef = this.dialog.open(LoginRegistrationComponent, {
+        width: '370px',
         minWidth: '300px',
-        height: '60vh',
+        height: '600px',
         minHeight: '600px',
       });
     }
   }
 
-  voteUp(event: MouseEvent) {
-    event.stopPropagation();
-    if (!this.authService.isLoggedIn()) return this.openLogin();
-
-    console.log('later');
+  setActiveEntity(entity: Entity) {
+    this.activeEntity = entity;
   }
 
-  voteDown(event: MouseEvent) {
-    event.stopPropagation();
-    if (!this.authService.isLoggedIn()) return this.openLogin();
-
-    console.log('later');
-  }
-
-  setActiveEntity(id: string) {
-    this.activeEntity = id;
-  }
-
-  getActiveEntity(): string {
+  getActiveEntity(): Entity {
     return this.activeEntity;
   }
 
   commentAdded(): Observable<Comment> {
     return this.newComment.asObservable();
+  }
+
+  commentModified(): Observable<Comment> {
+    return this.modifiedComment.asObservable();
+  }
+
+  getUserImage(userId: string | null): string {
+    if (userId) return `http://localhost:1234/api/image/${userId}`;
+    else return '';
+  }
+
+  navigateBack() {
+    this.location.back();
   }
 
   ngOnDestroy(): void {

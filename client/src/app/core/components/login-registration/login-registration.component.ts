@@ -6,11 +6,11 @@ import { Result } from '../../models/result.model';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: 'app-login-registration',
+  templateUrl: './login-registration.component.html',
+  styleUrls: ['./login-registration.component.scss'],
 })
-export class LoginComponent {
+export class LoginRegistrationComponent {
   visible: boolean = false;
   confirmVisible: boolean = false;
   loginPage: boolean = true;
@@ -36,7 +36,7 @@ export class LoginComponent {
 
   constructor(
     private authService: AuthService,
-    private dialogRef: MatDialogRef<LoginComponent>,
+    private dialogRef: MatDialogRef<LoginRegistrationComponent>,
     private _snackBar: MatSnackBar
   ) {}
 
@@ -50,6 +50,7 @@ export class LoginComponent {
         if (res.success) {
           this.dialogRef.close();
           this.alert('Logged in');
+          this.authService.setLoginEvent();
         } else {
           this.alert('Invalid credentials');
         }
@@ -81,13 +82,12 @@ export class LoginComponent {
 
   onImageChange(event: Event) {
     const element = event.currentTarget as HTMLInputElement;
-    console.log(element.files);
     this.newImage = element.files;
   }
 
   private handleResponse(res: Result) {
-    if (res.success) {
-      this.setImage();
+    if (res.success && res.userId) {
+      this.setImage(res.userId);
       this.loginPage = true;
       this.alert('Registration completed');
       this.registerForm.reset();
@@ -102,11 +102,9 @@ export class LoginComponent {
     }
   }
 
-  private setImage() {
+  private setImage(userId: string) {
     if (this.newImage?.length === 1) {
-      this.authService.setImage(this.newImage[0]).subscribe((res) => {
-        console.log(res);
-      });
+      this.authService.setImage(this.newImage[0], userId).subscribe();
     }
   }
 

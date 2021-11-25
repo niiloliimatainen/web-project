@@ -1,4 +1,5 @@
-<h2 mat-dialog-title>Add comment</h2>
+<h2 *ngIf="!editableComment" mat-dialog-title>Add comment</h2>
+<h2 *ngIf="editableComment" mat-dialog-title>Edit comment</h2>
 <div mat-dialog-content class="content-container">
   <mat-form-field class="comment-area" appearance="fill" color="accent">
     <mat-label>New comment</mat-label>
@@ -14,12 +15,22 @@
       Close
     </button>
     <button
+      *ngIf="!editableComment"
       mat-flat-button
       color="accent"
       class="comment-btn"
       (click)="this.addComment()"
     >
       Add
+    </button>
+    <button
+      *ngIf="editableComment"
+      mat-flat-button
+      color="accent"
+      class="comment-btn"
+      (click)="this.updateComment()"
+    >
+      Save
     </button>
   </div>
 </div>

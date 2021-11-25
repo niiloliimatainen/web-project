@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Result } from '../models/result.model';
 import { catchError, shareReplay, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { User } from '../models/user.model';
 
 @Injectable({
@@ -12,6 +12,7 @@ import { User } from '../models/user.model';
 export class AuthService {
   private readonly userUrl = environment.user_url;
   private readonly imageUrl = environment.image_url;
+  private loginEvent = new Subject();
 
   private options = {
     headers: new HttpHeaders({
@@ -40,9 +41,10 @@ export class AuthService {
       );
   }
 
-  setImage(img: File) {
+  setImage(img: File, userId: string) {
     var formData = new FormData();
     formData.append('image', img);
+    formData.append('userId', userId);
     return this.http.post<Result>(`${this.imageUrl}`, formData);
   }
 
@@ -69,10 +71,23 @@ export class AuthService {
   logout() {
     localStorage.removeItem('access_token');
     localStorage.removeItem('user_id');
+    this.loginEvent.next(false);
   }
 
   isLoggedIn() {
     return localStorage.getItem('access_token') !== null;
+  }
+
+  getUserId(): string | null {
+    return localStorage.getItem('user_id');
+  }
+
+  setLoginEvent() {
+    this.loginEvent.next();
+  }
+
+  getLoginEvent(): Observable<unknown> {
+    return this.loginEvent.asObservable();
   }
 
   private setToken(res: Result) {

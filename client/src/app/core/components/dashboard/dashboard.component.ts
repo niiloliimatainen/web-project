@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Subject, Subscription } from 'rxjs';
 import { indicate } from 'src/app/shared/utils/indicator';
 import { Entity } from '../../models/entity.model';
@@ -10,7 +10,7 @@ import { EntityService } from '../../services/entity.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnDestroy {
   private entitySubscription: Subscription | undefined;
   loading$ = new Subject<boolean>();
   entityList: Entity[] = [] as Entity[];

@@ -3,28 +3,33 @@
 </ng-template>
 
 <ng-container *ngIf="(this.loading$ | async) === false; else loading">
+  <div class="tool-container">
+    <button mat-icon-button class="back-btn" routerLink="/">
+      <mat-icon>keyboard_backspace</mat-icon>
+    </button>
+    <span class="spacer"></span>
+    <app-tool-menu *ngIf="createdByUser" [entity]="entity"></app-tool-menu>
+  </div>
   <div class="entity-container">
     <div class="entity-headers">
-      <button mat-icon-button class="back-btn" routerLink="/">
-        <mat-icon>keyboard_backspace</mat-icon>
-      </button>
       <h2 class="entity-header">{{ this.entity.title }}</h2>
       <div class="entity-subheaders">
-        <p>{{ this.entity.modified }}</p>
+        <div class="user-container">
+          <img
+            matListAvatar
+            class="user-icon"
+            [src]="this.coreService.getUserImage(this.entity.userId)"
+            onerror="this.src='../../../../assets/placeholder.png';"
+            alt="user"
+          />
+          <p class="username">{{ this.entity.username }}</p>
+          <p class="timestamp">{{ this.entity.modified }}</p>
+        </div>
         <span class="spacer"></span>
-        <app-vote
-          [likes]="entity.likes"
-          [dislikes]="entity.dislikes"
-        ></app-vote>
+        <app-vote [entity]="entity"></app-vote>
       </div>
     </div>
-
-    <div
-      [ngClass]="{
-        'content-container': !(isHandset$ | async),
-        'content-container-mobile': isHandset$ | async
-      }"
-    >
+    <div class="content-container">
       <div class="text-content">
         <p>
           {{ this.entity.content }}
@@ -35,7 +40,7 @@
       </div>
     </div>
   </div>
-  <div class="view-spacer"></div>
+
   <mat-divider></mat-divider>
   <div class="comment-container">
     <div class="comment-header-container">
@@ -47,7 +52,7 @@
         mat-flat-button
         color="accent"
         class="comment-btn"
-        (click)="this.coreService.openAddComment()"
+        (click)="this.coreService.openAddComment(null)"
       >
         Add comment
       </button>
@@ -56,6 +61,7 @@
       <app-comment
         *ngFor="let comment of this.comments"
         [comment]="comment"
+        (deletedComment)="this.updateComments($event, true)"
       ></app-comment>
     </mat-list>
   </div>

@@ -16,7 +16,7 @@ router.post(
 			Users.findOne(
 				{ $or: [{ email: req.body.email }, { username: req.body.username }] },
 				(err, user) => {
-					if (err) throw err;
+					if (err) return res.status(403).send({ success: false });
 					if (!user) {
 						createUser(req, res);
 					} else if (user.email === req.body.email) {
@@ -34,7 +34,7 @@ router.post('/login', (req, res) => {
 	Users.findOne(
 		{ $or: [{ email: req.body.username }, { username: req.body.username }] },
 		(err, user) => {
-			if (err) throw err;
+			if (err) return res.status(403).send({ success: false });
 			if (user) {
 				bcrypt.compare(req.body.password, user.password, (err, match) => {
 					if (err || !match) return res.status(404).send({ success: false });
@@ -44,10 +44,12 @@ router.post('/login', (req, res) => {
 						username: user.username,
 					};
 					jwt.sign(jwtPayload, process.env.SECRET, (err, token) => {
-						if (err) throw err;
-						return res
-							.status(200)
-							.send({ success: true, userId: user._id, token });
+						if (err) return res.status(403).send({ success: false });
+						return res.status(200).send({
+							success: true,
+							userId: user._id,
+							token,
+						});
 					});
 				});
 			} else return res.status(403).send({ success: false });
@@ -57,27 +59,30 @@ router.post('/login', (req, res) => {
 
 router.get('/:id', (req, res) => {
 	Users.findOne({ _id: req.params.id }, (err, user) => {
-		if (err) throw err;
+		if (err) return res.status(403).send({ success: false });
 		if (user) return res.send(user);
 	});
 });
 
 function createUser(req, res) {
 	bcrypt.genSalt(10, (err, salt) => {
-		if (err) throw err;
+		if (err) return res.status(403).send({ success: false });
 		bcrypt.hash(req.body.password, salt, (err, hash) => {
-			if (err) throw err;
+			if (err) return res.status(403).send({ success: false });
 			const newUser = new Users({
 				email: req.body.email,
 				username: req.body.username,
 				password: hash,
 				entities: [],
 				comments: [],
-				profilePicture: req.body.profilePicture,
+				imageId: '',
 			});
-			newUser.save((err) => {
-				if (err) throw err;
-				return res.send({ success: true });
+			newUser.save((err, user) => {
+				if (err) return res.status(403).send({ success: false });
+				return res.send({
+					success: true,
+					userId: user.id,
+				});
 			});
 		});
 	});

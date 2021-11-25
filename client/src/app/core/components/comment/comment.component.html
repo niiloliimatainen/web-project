@@ -1,18 +1,27 @@
 <div class="comment">
-  <mat-list-item disableRipple>
+  <mat-list-item>
     <img
       matListAvatar
-      id="list-item-icon"
-      src="../../../../assets/placeholder.png"
+      class="list-item-icon"
+      [src]="this.coreService.getUserImage(this.comment.userId)"
+      onerror="this.src='../../../../assets/placeholder.png';"
       alt="user"
     />
     <div class="container">
-      <div class="header-container">
-        <p class="username">{{ comment.username }}</p>
-        <p class="timestamp">{{ comment.modified }}</p>
-      </div>
+      <div class="content-container">
+        <div class="header-container">
+          <p class="username">{{ comment.username }}</p>
+          <p class="timestamp">{{ comment.modified }}</p>
+        </div>
 
-      <h3 class="content">{{ comment.content }}</h3>
+        <h3 class="content">{{ comment.content }}</h3>
+      </div>
+      <span class="spacer"></span>
+      <app-tool-menu
+        *ngIf="createdByUser"
+        [comment]="comment"
+        (deletedComment)="this.deletedComment.emit($event)"
+      ></app-tool-menu>
     </div>
   </mat-list-item>
 </div>

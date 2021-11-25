@@ -22,6 +22,10 @@ const routes: Routes = [
         path: 'create',
         component: CreateEntityComponent,
       },
+      {
+        path: 'edit',
+        component: CreateEntityComponent,
+      },
     ],
   },
   {
