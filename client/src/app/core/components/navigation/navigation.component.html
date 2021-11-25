@@ -1,8 +1,8 @@
 <mat-toolbar color="primary" class="toolbar">
   <button mat-icon-button class="nav-icon logo" routerLink="/">
-    <mat-icon>dashboard</mat-icon>
+    <mat-icon>code</mat-icon>
   </button>
-  <span class="header">My App</span>
+  <span class="header">Rate my code</span>
   <span class="spacer"></span>
 
   <div *ngIf="this.authService.isLoggedIn()" class="user-container">
@@ -37,7 +37,7 @@
   <button mat-menu-item>
     <span> View profile</span>
   </button>
-  <button mat-menu-item (click)="this.authService.logout()">
+  <button mat-menu-item (click)="this.logout()">
     <span>Log out</span>
   </button>
 </mat-menu>

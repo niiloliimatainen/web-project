@@ -59,6 +59,26 @@ router.post('/vote', validateToken, (req, res) => {
 	});
 });
 
+router.put('/update/:id', validateToken, (req, res) => {
+	Entity.findById(req.params.id, (err, entity) => {
+		if (err) return res.status(403).send({ success: false });
+		if (entity) {
+			const date = new Date(Date.now()).toLocaleString();
+			const ent = req.body;
+			entity.title = ent.title;
+			entity.content = ent.content;
+			entity.codeSnippet = ent.codeSnippet;
+			entity.modified = date;
+			entity.save((err) => {
+				if (err) return res.status(403).send({ success: false });
+				return res.send({ success: true });
+			});
+		} else {
+			return res.status(403).send({ success: false });
+		}
+	});
+});
+
 router.get('/entities', (_req, res) => {
 	Entity.find({}, (err, entities) => {
 		if (err) return res.status(403).send({ success: false });
@@ -71,6 +91,13 @@ router.get('/:id', (req, res) => {
 	Entity.findById(req.params.id, (err, entity) => {
 		if (err) return res.status(403).send({ success: false });
 		if (entity) return res.send(entity);
+	});
+});
+
+router.delete('/delete/:id', (req, res) => {
+	Entity.findByIdAndDelete(req.params.id, (err) => {
+		if (err) return res.status(403).send({ success: false });
+		return res.send({ success: true });
 	});
 });
 

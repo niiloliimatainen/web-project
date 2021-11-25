@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Entity } from 'src/app/core/models/entity.model';
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -10,12 +10,13 @@ import { EntityService } from 'src/app/core/services/entity.service';
   templateUrl: './vote.component.html',
   styleUrls: ['./vote.component.scss'],
 })
-export class VoteComponent implements OnInit {
+export class VoteComponent implements OnInit, OnDestroy {
   @Input() entity!: Entity;
 
   hasLiked!: boolean;
   hasDisliked!: boolean;
   private entitySubscription: Subscription | undefined;
+  private loginEventSubscription: Subscription | undefined;
 
   constructor(
     private coreService: CoreService,
@@ -26,9 +27,11 @@ export class VoteComponent implements OnInit {
   ngOnInit() {
     this.refreshLikes();
 
-    this.authService.getLoginEvent().subscribe(() => {
-      this.refreshLikes();
-    });
+    this.loginEventSubscription = this.authService
+      .getLoginEvent()
+      .subscribe(() => {
+        this.refreshLikes();
+      });
   }
 
   vote(event: MouseEvent, liked: boolean) {
@@ -69,5 +72,6 @@ export class VoteComponent implements OnInit {
 
   ngOnDestroy() {
     this.entitySubscription?.unsubscribe();
+    this.loginEventSubscription?.unsubscribe();
   }
 }

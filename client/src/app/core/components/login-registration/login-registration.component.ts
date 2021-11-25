@@ -104,9 +104,7 @@ export class LoginRegistrationComponent {
 
   private setImage(userId: string) {
     if (this.newImage?.length === 1) {
-      this.authService.setImage(this.newImage[0], userId).subscribe((res) => {
-        console.log(res);
-      });
+      this.authService.setImage(this.newImage[0], userId).subscribe();
     }
   }
 

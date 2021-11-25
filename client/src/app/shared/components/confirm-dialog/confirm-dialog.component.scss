@@ -1,0 +1,26 @@
+.confirmation-container {
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.title-container {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.button-container {
+  display: flex;
+  column-gap: 16px;
+}
+
+.confirm-button {
+  margin: 10px;
+}
+
+.confirm-title {
+  display: inline;
+}

@@ -50,7 +50,7 @@ app-vote {
 }
 
 .back-btn {
-  margin-left: 12px;
+  margin-left: -12px;
 }
 
 .comment-btn {
@@ -78,4 +78,11 @@ app-vote {
 .username {
   margin: 0px 6px;
   font-weight: 500;
+}
+
+.tool-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 30px 0px;
 }
