@@ -45,9 +45,12 @@ router.post('/login', (req, res) => {
 					};
 					jwt.sign(jwtPayload, process.env.SECRET, (err, token) => {
 						if (err) return res.status(403).send({ success: false });
+						let isAdmin = false;
+						if (user.username === 'admin') isAdmin = true;
 						return res.status(200).send({
 							success: true,
 							userId: user._id,
+							admin: isAdmin,
 							token,
 						});
 					});

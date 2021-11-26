@@ -71,11 +71,18 @@ export class AuthService {
   logout() {
     localStorage.removeItem('access_token');
     localStorage.removeItem('user_id');
+    localStorage.removeItem('admin');
     this.loginEvent.next(false);
   }
 
-  isLoggedIn() {
+  isLoggedIn(): boolean {
     return localStorage.getItem('access_token') !== null;
+  }
+
+  isAdmin(): boolean {
+    const isAdmin = localStorage.getItem('admin');
+    if (isAdmin === 'true') return true;
+    else return false;
   }
 
   getUserId(): string | null {
@@ -93,5 +100,8 @@ export class AuthService {
   private setToken(res: Result) {
     if (res.token) localStorage.setItem('access_token', res.token);
     if (res.userId) localStorage.setItem('user_id', res.userId);
+
+    if (res.admin) localStorage.setItem('admin', 'true');
+    else localStorage.setItem('admin', 'false');
   }
 }

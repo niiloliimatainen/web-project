@@ -26,7 +26,7 @@ export class CommentComponent implements OnInit, OnDestroy {
 
   constructor(
     public coreService: CoreService,
-    private authService: AuthService
+    public authService: AuthService
   ) {}
 
   ngOnInit() {

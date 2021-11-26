@@ -3,6 +3,7 @@ const router = express.Router();
 const Users = require('../models/Users');
 const Entity = require('../models/Entity');
 const validateToken = require('../auth/validateToken');
+const Comment = require('../models/Comment');
 
 router.post('', validateToken, (req, res) => {
 	Users.findById(req.user.id, (err, user) => {
@@ -95,6 +96,10 @@ router.get('/:id', (req, res) => {
 });
 
 router.delete('/delete/:id', (req, res) => {
+	Comment.deleteMany({ entity: req.params.id }, (err) => {
+		if (err) return res.status(403).send({ success: false });
+	});
+
 	Entity.findByIdAndDelete(req.params.id, (err) => {
 		if (err) return res.status(403).send({ success: false });
 		return res.send({ success: true });

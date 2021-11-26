@@ -18,7 +18,7 @@
       </div>
       <span class="spacer"></span>
       <app-tool-menu
-        *ngIf="createdByUser"
+        *ngIf="createdByUser || this.authService.isAdmin()"
         [comment]="comment"
         (deletedComment)="this.deletedComment.emit($event)"
       ></app-tool-menu>
