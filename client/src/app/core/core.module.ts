@@ -17,7 +17,8 @@ import { HighlightModule } from 'ngx-highlightjs';
 import { CommentComponent } from './components/comment/comment.component';
 import { SharedModule } from '../shared/shared.module';
 import { CreateEntityComponent } from './components/create-entity/create-entity.component';
-import { AddCommentComponent } from './components/add-comment/add-comment.component';
+import { TakeInputComponent } from './components/take-input/take-input.component';
+import { ViewUserComponent } from './components/view-user/view-user.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AddCommentComponent } from './components/add-comment/add-comment.compon
     ViewEntityComponent,
     CommentComponent,
     CreateEntityComponent,
-    AddCommentComponent,
+    TakeInputComponent,
+    ViewUserComponent,
   ],
   imports: [
     CommonModule,

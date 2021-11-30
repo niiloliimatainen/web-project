@@ -4,6 +4,7 @@ const Users = require('../models/Users');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { body, validationResult } = require('express-validator');
+const validateToken = require('../auth/validateToken');
 
 router.post(
 	'/register',
@@ -67,11 +68,27 @@ router.get('/:id', (req, res) => {
 	});
 });
 
+router.put('/:id/bio', validateToken, (req, res) => {
+	Users.findById(req.user.id, (err, user) => {
+		if (err) return res.status(403).send({ success: false });
+		if (user) {
+			user.bio = req.body.content;
+			user.save((err) => {
+				if (err) return res.status(403).send({ success: false });
+				return res.send({ success: true });
+			});
+		} else {
+			return res.status(403).send({ success: false });
+		}
+	});
+});
+
 function createUser(req, res) {
 	bcrypt.genSalt(10, (err, salt) => {
 		if (err) return res.status(403).send({ success: false });
 		bcrypt.hash(req.body.password, salt, (err, hash) => {
 			if (err) return res.status(403).send({ success: false });
+			const date = new Date(Date.now()).toLocaleString();
 			const newUser = new Users({
 				email: req.body.email,
 				username: req.body.username,
@@ -79,6 +96,8 @@ function createUser(req, res) {
 				entities: [],
 				comments: [],
 				imageId: '',
+				registerDate: date,
+				bio: '',
 			});
 			newUser.save((err, user) => {
 				if (err) return res.status(403).send({ success: false });

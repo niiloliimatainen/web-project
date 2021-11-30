@@ -9,6 +9,8 @@ let usersSchema = new Schema({
 	entities: Array,
 	comments: Array,
 	imageId: String,
+	registerDate: String,
+	bio: String,
 });
 
 const Users = mongoose.model('users', usersSchema);

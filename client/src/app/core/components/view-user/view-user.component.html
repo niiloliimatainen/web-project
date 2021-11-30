@@ -1,0 +1,54 @@
+<div class="header-container">
+  <button
+    mat-icon-button
+    class="back-btn"
+    (click)="this.coreService.navigateBack()"
+  >
+    <mat-icon>keyboard_backspace</mat-icon>
+  </button>
+  <span class="spacer"></span>
+  <button
+    *ngIf="this.userLoggedIn"
+    mat-flat-button
+    color="accent"
+    class="edit-bio-btn"
+    (click)="this.coreService.openTakeInput(this.user.bio, 'bio', 'edit')"
+  >
+    Edit bio
+  </button>
+</div>
+
+<div
+  [ngClass]="{
+    'profile-layout': (isHandset$ | async) === false,
+    'profile-layout-mobile': (isHandset$ | async) === true
+  }"
+>
+  <img
+    matListAvatar
+    [ngClass]="{
+      'profile-image': (isHandset$ | async) === false,
+      'profile-image-mobile': (isHandset$ | async) === true
+    }"
+    [src]="this.coreService.getUserImage(user._id)"
+    onerror="this.src='../../../../assets/placeholder.png';"
+    alt="user"
+  />
+
+  <div class="content-container">
+    <h1 class="username">Profile | {{ this.user.username }}</h1>
+    <mat-divider></mat-divider>
+    <div class="details-container">
+      <h2>
+        Email: <span class="user-detail">{{ this.user.email }}</span>
+      </h2>
+      <h2>
+        Date of registration:
+        <span class="user-detail">{{ this.user.registerDate }}</span>
+      </h2>
+      <h2>
+        Bio: <span class="user-detail">{{ this.user.bio }}</span>
+      </h2>
+    </div>
+  </div>
+</div>

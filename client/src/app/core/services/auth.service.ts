@@ -68,6 +68,14 @@ export class AuthService {
     return this.http.get<User>(`${this.userUrl}/${id}`, this.options);
   }
 
+  setUserBio(id: string, content: string): Observable<Result> {
+    return this.http.put<Result>(
+      `${this.userUrl}/${id}/bio`,
+      { content: content },
+      this.options
+    );
+  }
+
   logout() {
     localStorage.removeItem('access_token');
     localStorage.removeItem('user_id');

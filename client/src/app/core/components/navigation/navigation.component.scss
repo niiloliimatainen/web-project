@@ -1,3 +1,7 @@
+.mat-toolbar .mat-primary {
+  overflow: hidden;
+}
+
 .user-container {
   display: flex;
 }
@@ -28,4 +32,14 @@
   display: block;
   margin: auto;
   font-size: 16px;
+}
+
+.main-content-layout {
+  overflow-y: auto;
+  overflow-x: hidden;
+  // 100% height - navigation bar
+  height: calc(100% - 64px);
+  @media only screen and (max-width: 600px) {
+    height: calc(100% - 56px);
+  }
 }

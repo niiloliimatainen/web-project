@@ -24,8 +24,11 @@
             [src]="this.coreService.getUserImage(this.entity.userId)"
             onerror="this.src='../../../../assets/placeholder.png';"
             alt="user"
+            [routerLink]="['/user/', entity.userId]"
           />
-          <p class="username">{{ this.entity.username }}</p>
+          <p class="username" [routerLink]="['/user/', entity.userId]">
+            {{ this.entity.username }}
+          </p>
           <p class="timestamp">{{ this.entity.modified }}</p>
         </div>
         <span class="spacer"></span>
@@ -55,7 +58,7 @@
         mat-flat-button
         color="accent"
         class="comment-btn"
-        (click)="this.coreService.openAddComment(null)"
+        (click)="this.coreService.openTakeInput('', 'comment', 'add')"
       >
         Add comment
       </button>

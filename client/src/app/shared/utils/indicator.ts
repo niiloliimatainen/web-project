@@ -13,6 +13,8 @@ export const indicate = <T>(indicator: Subject<boolean>) => {
   return (source: Observable<T>): Observable<T> =>
     source.pipe(
       prepare(() => indicator.next(true)),
-      finalize(() => indicator.next(false))
+      finalize(() => {
+        indicator.next(false);
+      })
     );
 };

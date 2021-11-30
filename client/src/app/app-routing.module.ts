@@ -4,6 +4,7 @@ import { CreateEntityComponent } from './core/components/create-entity/create-en
 import { DashboardComponent } from './core/components/dashboard/dashboard.component';
 import { NavigationComponent } from './core/components/navigation/navigation.component';
 import { ViewEntityComponent } from './core/components/view-entity/view-entity.component';
+import { ViewUserComponent } from './core/components/view-user/view-user.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,10 @@ const routes: Routes = [
       {
         path: 'edit',
         component: CreateEntityComponent,
+      },
+      {
+        path: 'user/:id',
+        component: ViewUserComponent,
       },
     ],
   },

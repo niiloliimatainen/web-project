@@ -1,0 +1,58 @@
+.profile-layout {
+  display: flex;
+  padding: 0px 30px 20px;
+  align-items: center;
+}
+
+.profile-layout-mobile {
+  display: flex;
+  padding: 30px;
+  align-items: center;
+  flex-direction: column;
+}
+
+.content-container {
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+  width: 100%;
+}
+
+.details-container {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+
+.profile-image {
+  height: 300px;
+  width: 300px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.profile-image-mobile {
+  height: 180px;
+  width: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.user-detail {
+  font-weight: 200;
+  width: 100%;
+}
+
+.username {
+  font-weight: 600;
+  font-size: 28px;
+}
+
+.header-container {
+  display: flex;
+  padding: 20px 30px 10px;
+}
+
+.edit-bio-btn {
+  margin-right: 30px;
+}

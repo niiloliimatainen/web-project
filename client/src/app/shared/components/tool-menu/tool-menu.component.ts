@@ -31,7 +31,7 @@ export class ToolMenuComponent {
     if (this.entity) {
       this.coreService.openCreateEntity(true);
     } else if (this.comment) {
-      this.coreService.openAddComment(this.comment);
+      this.coreService.openTakeInput(this.comment, 'comment', 'edit');
     }
   }
 
