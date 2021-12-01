@@ -1,4 +1,9 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { ToolMenuComponent } from './tool-menu.component';
 
@@ -8,9 +13,15 @@ describe('ToolMenuComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ToolMenuComponent ]
-    })
-    .compileComponents();
+      declarations: [ToolMenuComponent],
+      imports: [
+        RouterTestingModule,
+        HttpClientTestingModule,
+        MatDialogModule,
+        MatIconModule,
+        MatListModule,
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {

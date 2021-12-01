@@ -17,7 +17,7 @@ import { CoreService } from '../../services/core.service';
   styleUrls: ['./comment.component.scss'],
 })
 export class CommentComponent implements OnInit, OnDestroy {
-  @Input() comment!: Comment;
+  @Input() comment: Comment = {} as Comment;
 
   @Output() deletedComment = new EventEmitter<Comment>();
 
