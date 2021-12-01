@@ -36,7 +36,7 @@ export class ViewEntityComponent implements OnDestroy {
     private route: ActivatedRoute,
     private entityService: EntityService,
     public coreService: CoreService,
-    private authService: AuthService,
+    public authService: AuthService,
     private commentService: CommentService
   ) {
     this.loginEventSubscription = this.authService

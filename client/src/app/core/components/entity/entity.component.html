@@ -1,6 +1,7 @@
 <div class="list-item">
   <mat-list-item disableRipple="true" [routerLink]="['/post/', entity._id]">
     <img
+      [routerLink]="['/user/', entity.userId]"
       matListAvatar
       class="list-item-icon"
       [src]="this.coreService.getUserImage(this.entity.userId)"
@@ -10,7 +11,9 @@
     <div class="container">
       <div class="content-container">
         <div class="header-container">
-          <p mat-line class="username">{{ entity.username }}</p>
+          <p mat-line class="username" [routerLink]="['/user/', entity.userId]">
+            {{ entity.username }}
+          </p>
           <p class="timestamp">{{ entity.modified }}</p>
         </div>
         <h3 class="content">{{ entity.title }}</h3>

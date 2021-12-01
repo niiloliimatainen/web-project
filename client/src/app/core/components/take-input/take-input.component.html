@@ -1,0 +1,54 @@
+<ng-container *ngIf="this.data.type === 'comment'">
+  <h2 *ngIf="this.data.action === 'add'" mat-dialog-title>Add comment</h2>
+  <h2 *ngIf="this.data.action === 'edit'" mat-dialog-title>Edit comment</h2>
+  <div mat-dialog-content class="content-container">
+    <mat-form-field class="text-area" appearance="fill" color="accent">
+      <mat-label>New comment</mat-label>
+      <textarea
+        rows="2"
+        matInput
+        [(ngModel)]="newInput"
+        color="accent"
+      ></textarea>
+    </mat-form-field>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="this.data.type === 'bio'">
+  <h2 mat-dialog-title>Edit bio</h2>
+  <div mat-dialog-content class="content-container">
+    <mat-form-field class="text-area" appearance="fill" color="accent">
+      <mat-label>New bio</mat-label>
+      <textarea
+        rows="2"
+        matInput
+        [(ngModel)]="newInput"
+        color="accent"
+      ></textarea>
+    </mat-form-field>
+  </div>
+</ng-container>
+
+<div class="btn-container">
+  <button mat-flat-button class="comment-btn" [mat-dialog-close]="true">
+    Close
+  </button>
+  <button
+    *ngIf="this.data.action === 'add'"
+    mat-flat-button
+    color="accent"
+    class="input-btn"
+    (click)="this.add()"
+  >
+    Add
+  </button>
+  <button
+    *ngIf="data.action === 'edit'"
+    mat-flat-button
+    color="accent"
+    class="input-btn"
+    (click)="this.update()"
+  >
+    Save
+  </button>
+</div>

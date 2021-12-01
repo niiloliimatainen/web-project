@@ -37,6 +37,7 @@
 }
 
 .username {
+  cursor: pointer;
   margin-bottom: 0;
   margin-right: 4px;
   font-weight: 500;
@@ -44,4 +45,8 @@
 
 .content {
   margin-bottom: 0;
+}
+
+.user-icon {
+  cursor: pointer;
 }

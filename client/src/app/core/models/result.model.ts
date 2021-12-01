@@ -3,4 +3,5 @@ export interface Result {
   userId?: string;
   token?: string;
   status?: number;
+  admin?: boolean;
 }

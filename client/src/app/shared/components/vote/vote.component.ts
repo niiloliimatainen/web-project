@@ -11,7 +11,7 @@ import { EntityService } from 'src/app/core/services/entity.service';
   styleUrls: ['./vote.component.scss'],
 })
 export class VoteComponent implements OnInit, OnDestroy {
-  @Input() entity!: Entity;
+  @Input() entity: Entity = {} as Entity;
 
   hasLiked!: boolean;
   hasDisliked!: boolean;
@@ -26,7 +26,6 @@ export class VoteComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.refreshLikes();
-
     this.loginEventSubscription = this.authService
       .getLoginEvent()
       .subscribe(() => {

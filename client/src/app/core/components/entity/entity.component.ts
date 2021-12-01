@@ -10,7 +10,7 @@ import { CoreService } from '../../services/core.service';
   styleUrls: ['./entity.component.scss'],
 })
 export class EntityComponent {
-  @Input() entity!: Entity;
+  @Input() entity: Entity = {} as Entity;
 
   isHandset$ = this.breakpointService.isHandset$;
 

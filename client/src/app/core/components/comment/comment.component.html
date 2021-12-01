@@ -1,8 +1,9 @@
 <div class="comment">
   <mat-list-item>
     <img
+      [routerLink]="['/user/', comment.userId]"
       matListAvatar
-      class="list-item-icon"
+      class="user-icon"
       [src]="this.coreService.getUserImage(this.comment.userId)"
       onerror="this.src='../../../../assets/placeholder.png';"
       alt="user"
@@ -10,7 +11,9 @@
     <div class="container">
       <div class="content-container">
         <div class="header-container">
-          <p class="username">{{ comment.username }}</p>
+          <p class="username" [routerLink]="['/user/', comment.userId]">
+            {{ comment.username }}
+          </p>
           <p class="timestamp">{{ comment.modified }}</p>
         </div>
 
@@ -18,7 +21,7 @@
       </div>
       <span class="spacer"></span>
       <app-tool-menu
-        *ngIf="createdByUser"
+        *ngIf="createdByUser || this.authService.isAdmin()"
         [comment]="comment"
         (deletedComment)="this.deletedComment.emit($event)"
       ></app-tool-menu>

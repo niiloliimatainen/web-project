@@ -37,8 +37,7 @@ pre {
 }
 
 .comment-container {
-  height: 500px;
-  padding: 0px 14px;
+  padding: 0px 14px 30px;
 }
 
 .comment-header {
@@ -67,6 +66,7 @@ app-vote {
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
+  cursor: pointer;
 }
 
 .timestamp {
@@ -78,6 +78,7 @@ app-vote {
 .username {
   margin: 0px 6px;
   font-weight: 500;
+  cursor: pointer;
 }
 
 .tool-container {

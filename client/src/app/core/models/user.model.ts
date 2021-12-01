@@ -6,4 +6,6 @@ export interface User {
   entities: string[];
   comments: string[];
   imageId: string;
+  registerDate: string;
+  bio: string;
 }

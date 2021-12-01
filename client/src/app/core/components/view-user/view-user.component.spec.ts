@@ -1,35 +1,31 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { ViewEntityComponent } from './view-entity.component';
+import { ViewUserComponent } from './view-user.component';
 
-describe('ViewEntityComponent', () => {
-  let component: ViewEntityComponent;
-  let fixture: ComponentFixture<ViewEntityComponent>;
+describe('ViewUserComponent', () => {
+  let component: ViewUserComponent;
+  let fixture: ComponentFixture<ViewUserComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ViewEntityComponent],
+      declarations: [ViewUserComponent],
       imports: [
         RouterTestingModule,
         HttpClientTestingModule,
         MatDialogModule,
         MatIconModule,
         MatDividerModule,
-        MatButtonModule,
-        MatProgressSpinnerModule,
       ],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ViewEntityComponent);
+    fixture = TestBed.createComponent(ViewUserComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
