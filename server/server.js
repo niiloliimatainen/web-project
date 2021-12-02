@@ -9,7 +9,8 @@ const entityRoutes = require('./api/entity-routes.js');
 const commentRoutes = require('./api/comment-routes.js');
 const imageRoutes = require('./api/image-routes.js');
 
-const mongoDB = 'mongodb://localhost:27017/testdb';
+// Initialize the database
+const mongoDB = 'mongodb://localhost:27017/maindb';
 mongoose.connect(mongoDB);
 mongoose.Promise = Promise;
 const db = mongoose.connection;
@@ -22,6 +23,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error'));
 
 app.use(express.json());
 
+// Redirecting each requests to routes files
 app.use('/api/user', userRoutes);
 
 app.use('/api/entity', entityRoutes);
@@ -30,7 +32,7 @@ app.use('/api/comment', commentRoutes);
 
 app.use('/api/image', imageRoutes);
 
-app.use('*', (req, res) => {
+app.use('*', (_req, res) => {
 	res.status(404).send('Invalid url');
 });
 

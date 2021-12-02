@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+// Image that user can add for profile
 let imageSchema = new Schema({
 	userId: String,
 	name: String,

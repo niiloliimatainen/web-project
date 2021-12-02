@@ -6,6 +6,9 @@ const jwt = require('jsonwebtoken');
 const { body, validationResult } = require('express-validator');
 const validateToken = require('../auth/validateToken');
 
+// All endpoints to handle requests related to user
+
+// Email and password must pass the requirements, username and email must be unique
 router.post(
 	'/register',
 	body('email').isEmail(),
@@ -31,6 +34,7 @@ router.post(
 	}
 );
 
+// User can login with email or with username. If user is admin, add isAdmin=true to return body.
 router.post('/login', (req, res) => {
 	Users.findOne(
 		{ $or: [{ email: req.body.username }, { username: req.body.username }] },
@@ -61,6 +65,7 @@ router.post('/login', (req, res) => {
 	);
 });
 
+// Get user by id
 router.get('/:id', (req, res) => {
 	Users.findOne({ _id: req.params.id }, (err, user) => {
 		if (err) return res.status(403).send({ success: false });
@@ -68,6 +73,7 @@ router.get('/:id', (req, res) => {
 	});
 });
 
+// Get user's bio by userId
 router.put('/:id/bio', validateToken, (req, res) => {
 	Users.findById(req.user.id, (err, user) => {
 		if (err) return res.status(403).send({ success: false });
@@ -83,6 +89,7 @@ router.put('/:id/bio', validateToken, (req, res) => {
 	});
 });
 
+// Helper function for registration. Initialize user's metadata.
 function createUser(req, res) {
 	bcrypt.genSalt(10, (err, salt) => {
 		if (err) return res.status(403).send({ success: false });

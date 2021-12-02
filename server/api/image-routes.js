@@ -4,8 +4,10 @@ const Users = require('../models/Users');
 const multer = require('multer');
 const upload = multer();
 const router = express.Router();
-const validateToken = require('../auth/validateToken');
 
+// All endpoints regarding images
+
+// Add image to user. ImageId is also saved to user's metadata.
 router.post('/', upload.single('image'), (req, res) => {
 	Users.findById(req.body.userId, (err, user) => {
 		if (user && !err) {
@@ -32,6 +34,7 @@ router.post('/', upload.single('image'), (req, res) => {
 	});
 });
 
+// Get user's image with userId
 router.get('/:userId', (req, res) => {
 	Image.findOne({ userId: req.params.userId }, (err, img) => {
 		if (err) throw err;
