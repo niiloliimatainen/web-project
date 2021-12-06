@@ -11,6 +11,7 @@
     <h2 *ngIf="this.editMode" class="title">Edit your post</h2>
   </div>
   <div>
+    <!-- If create new mode, steps how to go linearly through -->
     <mat-stepper [orientation]="orientation" [linear]="!this.editMode" #stepper>
       <mat-step [stepControl]="firstStep">
         <form [formGroup]="firstStep">

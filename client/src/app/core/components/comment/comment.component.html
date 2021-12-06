@@ -20,6 +20,10 @@
         <h3 class="content">{{ comment.content }}</h3>
       </div>
       <span class="spacer"></span>
+      <!-- 
+        If comment is created by logged in user or user is admin, show tool menu.
+        If comment is deleted from tool menu, emit event to parent component.
+      -->
       <app-tool-menu
         *ngIf="createdByUser || this.authService.isAdmin()"
         [comment]="comment"

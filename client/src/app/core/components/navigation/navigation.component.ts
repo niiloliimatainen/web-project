@@ -16,6 +16,7 @@ export class NavigationComponent {
     private dialog: MatDialog
   ) {}
 
+  // Logout user, if user confirms confirmDialog
   logout() {
     const dialogRef = this.dialog.open(ConfirmDialogComponent);
     dialogRef.afterClosed().subscribe((confirmed) => {

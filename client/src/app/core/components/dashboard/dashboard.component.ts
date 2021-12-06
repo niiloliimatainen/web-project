@@ -19,6 +19,7 @@ export class DashboardComponent implements OnDestroy {
     private entityService: EntityService,
     public coreService: CoreService
   ) {
+    // Get all entities that are created
     this.entitySubscription = this.entityService
       .getEntities()
       .pipe(indicate(this.loading$))

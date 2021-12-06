@@ -12,6 +12,7 @@ import { AuthService } from '../../services/auth.service';
 import { CommentService } from '../../services/comment.service';
 import { CoreService } from '../../services/core.service';
 
+// This component works as a comment creator, comment editor, bio creator, and bio editor
 @Component({
   selector: 'app-take-input',
   templateUrl: './take-input.component.html',
@@ -40,6 +41,7 @@ export class TakeInputComponent implements OnInit, OnDestroy {
     public data: { editable: Comment | string; type: string; action: string }
   ) {}
 
+  // Get data type and component mode from MAT_DIALOG_DATA
   ngOnInit() {
     this.type = this.data.type;
     if (this.data.action === 'edit') {
@@ -53,6 +55,7 @@ export class TakeInputComponent implements OnInit, OnDestroy {
     }
   }
 
+  // Add new comment to entity, and emit commentAdded event
   addComment() {
     this.entityId = this.coreService.getActiveEntity()._id;
     if (this.entityId) {
@@ -67,6 +70,7 @@ export class TakeInputComponent implements OnInit, OnDestroy {
     }
   }
 
+  // Update existing comment and emit commentModified event
   updateComment() {
     if (this.comment) {
       this.entityId = this.coreService.getActiveEntity()._id;
@@ -83,6 +87,7 @@ export class TakeInputComponent implements OnInit, OnDestroy {
     }
   }
 
+  // Set new or replace existing bio, and emit biomodified event
   setBio() {
     this.userId = this.authService.getUserId();
     if (this.userId) {

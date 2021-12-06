@@ -1,3 +1,4 @@
+// Data transfer object for comment
 export interface Comment {
   _id: string;
   userId: string;

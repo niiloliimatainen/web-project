@@ -42,6 +42,7 @@ import { ViewUserComponent } from './components/view-user/view-user.component';
     SharedModule,
   ],
 })
+// Check that CoreModule is imported only once
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
     if (parentModule) {

@@ -15,6 +15,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatMenuModule } from '@angular/material/menu';
 
+// Module that imports and exports all the Angular material UI related modules. Don't import them anywhere else
 @NgModule({
   declarations: [],
   imports: [

@@ -18,7 +18,6 @@ import { CoreService } from '../../services/core.service';
 })
 export class CommentComponent implements OnInit, OnDestroy {
   @Input() comment: Comment = {} as Comment;
-
   @Output() deletedComment = new EventEmitter<Comment>();
 
   createdByUser: boolean = false;
@@ -29,6 +28,7 @@ export class CommentComponent implements OnInit, OnDestroy {
     public authService: AuthService
   ) {}
 
+  // Update createdByUser flag and subscribe to loginEvent observable. If loginEvent occurs, the flag is updated again.
   ngOnInit() {
     this.updateUser();
     this.loginEventSubscription = this.authService

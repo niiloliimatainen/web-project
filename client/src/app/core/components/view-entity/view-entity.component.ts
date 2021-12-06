@@ -39,12 +39,16 @@ export class ViewEntityComponent implements OnDestroy {
     public authService: AuthService,
     private commentService: CommentService
   ) {
+    // Subscribe to loginEvent observable and update user if changes occur
     this.loginEventSubscription = this.authService
       .getLoginEvent()
       .subscribe(() => {
         this.updateUser();
       });
 
+    // Get entityId from url. After that, get entity by its id and use switchMap to get all the comments for the entity.
+    // SwitchMap changes the entity request observable to comment request observable after the first request is done, so only one subscribe is needed.
+    // Update also the active entity to the coreService
     this.routeSubscription = this.route.params.subscribe((params) => {
       this.entitySubscription = this.entityService
         .getEntity(params.id)
@@ -62,15 +66,18 @@ export class ViewEntityComponent implements OnDestroy {
         });
     });
 
+    // Get new comments from newComment observable
     this.newCommentSubscription = this.coreService
       .commentAdded()
       .subscribe((res) => this.comments.push(res));
 
+    // Get modified comments from modifiedComment observable
     this.commentModifiedSubscription = this.coreService
       .commentModified()
       .subscribe((res) => this.updateComments(res, false));
   }
 
+  // If comment is modified, replace old comment with the modified comment. If comment is deleted, remove the comment
   updateComments(modifiedComment: Comment, deleted: boolean) {
     const index = this.comments.findIndex(
       (comment) => comment._id === modifiedComment._id
@@ -81,6 +88,7 @@ export class ViewEntityComponent implements OnDestroy {
     }
   }
 
+  // Update createdByUser flag
   private updateUser() {
     if (this.authService.getUserId() === this.entity.userId) {
       this.createdByUser = true;

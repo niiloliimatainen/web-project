@@ -17,10 +17,11 @@
       </button>
     </div>
     <mat-divider></mat-divider>
+    <!-- Create list of entity components -->
     <mat-nav-list>
       <app-entity
-        [entity]="ent"
         *ngFor="let ent of this.entityList"
+        [entity]="ent"
       ></app-entity>
     </mat-nav-list>
   </div>

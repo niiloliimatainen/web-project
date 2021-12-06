@@ -26,6 +26,7 @@ describe('NavigationComponent', () => {
   let loader: HarnessLoader;
   let de: DebugElement;
 
+  // Creating spyObjects for needed services and functions
   const authServiceSpy = jasmine.createSpyObj('AuthService', {
     isLoggedIn: false,
     logout: () => {
@@ -44,6 +45,7 @@ describe('NavigationComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [NavigationComponent],
+      // Import all the needed modules
       imports: [
         HttpClientTestingModule,
         NoopAnimationsModule,
@@ -54,6 +56,7 @@ describe('NavigationComponent', () => {
         MatDialogModule,
         RouterTestingModule,
       ],
+      // Provide spyObjects as a real service
       providers: [
         { provide: AuthService, useValue: authServiceSpy },
         { provide: CoreService, useValue: coreServiceSpy },

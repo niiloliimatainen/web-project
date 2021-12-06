@@ -35,6 +35,7 @@ export class ToolMenuComponent {
     }
   }
 
+  // Delete comment or entity. If entity is deleted, navigate back to front page, if comment is deleted, emit deletedComment event to the parent component
   delete() {
     const dialogRef = this.dialog.open(ConfirmDialogComponent);
     dialogRef.afterClosed().subscribe((confirmed) => {

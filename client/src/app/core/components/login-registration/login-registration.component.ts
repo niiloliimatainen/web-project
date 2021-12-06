@@ -16,9 +16,13 @@ export class LoginRegistrationComponent {
   loginPage: boolean = true;
   newImage: FileList | null = null;
 
+  // All the formControllers with validators
   loginForm: FormGroup = new FormGroup({
     username: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required, Validators.min(3)]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(8),
+    ]),
   });
 
   registerForm: FormGroup = new FormGroup({
@@ -40,6 +44,7 @@ export class LoginRegistrationComponent {
     private _snackBar: MatSnackBar
   ) {}
 
+  // Login user, if success, alert loginEvent
   login() {
     this.authService
       .login(
@@ -50,13 +55,14 @@ export class LoginRegistrationComponent {
         if (res.success) {
           this.dialogRef.close();
           this.alert('Logged in');
-          this.authService.setLoginEvent();
+          this.authService.emitLoginEvent();
         } else {
           this.alert('Invalid credentials');
         }
       });
   }
 
+  // Register user, if inputs are valid, else alert the problem
   register() {
     if (!this.registerForm.get('email')?.valid) {
       this.alert('Email is invalid');
@@ -80,11 +86,13 @@ export class LoginRegistrationComponent {
     }
   }
 
+  // Update image
   onImageChange(event: Event) {
     const element = event.currentTarget as HTMLInputElement;
     this.newImage = element.files;
   }
 
+  // If there are problems, alert the user. Else change to login page and set user's image to the backend
   private handleResponse(res: Result) {
     if (res.success && res.userId) {
       this.setImage(res.userId);
