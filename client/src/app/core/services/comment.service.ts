@@ -8,6 +8,7 @@ import { Result } from '../models/result.model';
 @Injectable({
   providedIn: 'root',
 })
+// This service is used to handle all the comment related endpoints
 export class CommentService {
   private readonly commentUrl = environment.comment_url;
   private options = {

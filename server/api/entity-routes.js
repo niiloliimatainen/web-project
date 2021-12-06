@@ -5,6 +5,9 @@ const Entity = require('../models/Entity');
 const validateToken = require('../auth/validateToken');
 const Comment = require('../models/Comment');
 
+// All endpoints to handle requests related to entities
+
+// Create new entity and initialize its metadata. Save entityId to user.
 router.post('', validateToken, (req, res) => {
 	Users.findById(req.user.id, (err, user) => {
 		if (user && !err) {
@@ -38,6 +41,7 @@ router.post('', validateToken, (req, res) => {
 	});
 });
 
+// Like or dislike entity with entityId.
 router.post('/vote', validateToken, (req, res) => {
 	Entity.findById(req.body.id, (err, entity) => {
 		if (err) return res.status(403).send({ success: false });
@@ -60,6 +64,7 @@ router.post('/vote', validateToken, (req, res) => {
 	});
 });
 
+// Update entity with entityId
 router.put('/update/:id', validateToken, (req, res) => {
 	Entity.findById(req.params.id, (err, entity) => {
 		if (err) return res.status(403).send({ success: false });
@@ -80,6 +85,7 @@ router.put('/update/:id', validateToken, (req, res) => {
 	});
 });
 
+// Get all entities in db
 router.get('/entities', (_req, res) => {
 	Entity.find({}, (err, entities) => {
 		if (err) return res.status(403).send({ success: false });
@@ -88,6 +94,7 @@ router.get('/entities', (_req, res) => {
 	});
 });
 
+// Get a single entity with id
 router.get('/:id', (req, res) => {
 	Entity.findById(req.params.id, (err, entity) => {
 		if (err) return res.status(403).send({ success: false });
@@ -95,6 +102,7 @@ router.get('/:id', (req, res) => {
 	});
 });
 
+// Delete single entity with id
 router.delete('/delete/:id', (req, res) => {
 	Comment.deleteMany({ entity: req.params.id }, (err) => {
 		if (err) return res.status(403).send({ success: false });

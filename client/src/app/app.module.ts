@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JwtModule } from '@auth0/angular-jwt';
 import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 
+// Main module of the app
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -17,6 +18,7 @@ import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
     HttpClientModule,
     CoreModule.forRoot(),
     BrowserAnimationsModule,
+    // This adds jwt token (if available) to every request send to the backend
     JwtModule.forRoot({
       config: {
         tokenGetter: () => {
@@ -27,6 +29,7 @@ import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
     }),
   ],
   providers: [
+    // Set highlight.js to support all possible languages for code-snippets
     {
       provide: HIGHLIGHT_OPTIONS,
       useValue: {

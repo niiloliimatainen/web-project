@@ -24,6 +24,7 @@ export class VoteComponent implements OnInit, OnDestroy {
     private entityService: EntityService
   ) {}
 
+  // Get loginEvents and refreshLikes according to them
   ngOnInit() {
     this.refreshLikes();
     this.loginEventSubscription = this.authService
@@ -33,7 +34,9 @@ export class VoteComponent implements OnInit, OnDestroy {
       });
   }
 
+  // User can like or dislike entity. One user can vote one entity only once
   vote(event: MouseEvent, liked: boolean) {
+    // Prevent navigation to entity view, if voted from the front page
     event.stopPropagation();
     if (this.hasLiked || this.hasDisliked) return;
     else if (!this.authService.isLoggedIn())
@@ -54,6 +57,7 @@ export class VoteComponent implements OnInit, OnDestroy {
       });
   }
 
+  // Refres hasLiked and hasDisliked flags. Icons are colored according to them
   private refreshLikes() {
     const userId = this.authService.getUserId();
     const liked = this.entity.likedUsers.findIndex((user) => user === userId);

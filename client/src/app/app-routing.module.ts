@@ -6,6 +6,7 @@ import { NavigationComponent } from './core/components/navigation/navigation.com
 import { ViewEntityComponent } from './core/components/view-entity/view-entity.component';
 import { ViewUserComponent } from './core/components/view-user/view-user.component';
 
+// All the routes of the app. If route is children, it is rendered from the parent component's router-outlet, else it it is rendered from AppComponent's router-outlet.
 const routes: Routes = [
   {
     path: '',

@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 
+// Interceptor function to validate user's jwt token. If token is valid, add user to the request and go to the next step, else return 401.
 module.exports = function (req, res, next) {
 	const authHeader = req.headers['authorization'];
 	let token = null;

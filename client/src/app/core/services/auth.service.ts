@@ -9,6 +9,7 @@ import { User } from '../models/user.model';
 @Injectable({
   providedIn: 'root',
 })
+// Service that handle all the user related endpoints and events
 export class AuthService {
   private readonly userUrl = environment.user_url;
   private readonly imageUrl = environment.image_url;
@@ -48,6 +49,7 @@ export class AuthService {
     return this.http.post<Result>(`${this.imageUrl}`, formData);
   }
 
+  // After login, use tap to set the token
   login(username: string, password: string): Observable<Result> {
     return this.http
       .post<Result>(
@@ -76,11 +78,12 @@ export class AuthService {
     );
   }
 
+  // Remove user related data from localstorage and emit login event
   logout() {
     localStorage.removeItem('access_token');
     localStorage.removeItem('user_id');
     localStorage.removeItem('admin');
-    this.loginEvent.next(false);
+    this.emitLoginEvent();
   }
 
   isLoggedIn(): boolean {
@@ -97,7 +100,7 @@ export class AuthService {
     return localStorage.getItem('user_id');
   }
 
-  setLoginEvent() {
+  emitLoginEvent() {
     this.loginEvent.next();
   }
 
@@ -105,6 +108,7 @@ export class AuthService {
     return this.loginEvent.asObservable();
   }
 
+  // Set token, user_id and admin flag to localstorage. auth0 package will get the token from the localstorage and add it to every request made to the backend
   private setToken(res: Result) {
     if (res.token) localStorage.setItem('access_token', res.token);
     if (res.userId) localStorage.setItem('user_id', res.userId);

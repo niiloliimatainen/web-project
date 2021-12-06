@@ -1,3 +1,4 @@
+<!-- Comment related container -->
 <ng-container *ngIf="this.data.type === 'comment'">
   <h2 *ngIf="this.data.action === 'add'" mat-dialog-title>Add comment</h2>
   <h2 *ngIf="this.data.action === 'edit'" mat-dialog-title>Edit comment</h2>
@@ -14,6 +15,7 @@
   </div>
 </ng-container>
 
+<!-- Bio related container -->
 <ng-container *ngIf="this.data.type === 'bio'">
   <h2 mat-dialog-title>Edit bio</h2>
   <div mat-dialog-content class="content-container">
@@ -29,6 +31,7 @@
   </div>
 </ng-container>
 
+<!-- Buttons are shared among bio and update mode -->
 <div class="btn-container">
   <button mat-flat-button class="comment-btn" [mat-dialog-close]="true">
     Close

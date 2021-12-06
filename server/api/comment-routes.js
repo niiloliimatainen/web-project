@@ -5,6 +5,9 @@ const Entity = require('../models/Entity');
 const Comment = require('../models/Comment');
 const validateToken = require('../auth/validateToken');
 
+// All endpoints to handle requests related to comments
+
+// Add new comment to entity with entityId
 router.post('/:entityId', validateToken, (req, res) => {
 	Users.findById(req.user.id, (err, user) => {
 		if (!user || err) return res.status(403).send({ success: false });
@@ -15,6 +18,7 @@ router.post('/:entityId', validateToken, (req, res) => {
 	});
 });
 
+// Update entity's comment with commentId
 router.put('/update/:id', validateToken, (req, res) => {
 	Comment.findById(req.params.id, (err, comment) => {
 		if (err) return res.status(403).send({ success: false });
@@ -32,6 +36,7 @@ router.put('/update/:id', validateToken, (req, res) => {
 	});
 });
 
+// Get all entity's comments with entityId
 router.get('/:entityId', (req, res) => {
 	Comment.find({ entity: req.params.entityId }, (err, comments) => {
 		if (err) return res.status(403).send({ success: false });
@@ -39,6 +44,7 @@ router.get('/:entityId', (req, res) => {
 	});
 });
 
+// Delete comment from entity with commentId
 router.delete('/delete/:id', (req, res) => {
 	Comment.findByIdAndDelete(req.params.id, (err) => {
 		if (err) return res.status(403).send({ success: false });
@@ -46,6 +52,7 @@ router.delete('/delete/:id', (req, res) => {
 	});
 });
 
+// Helper functions to create comment. CommentId is saved also to the user's and entity's metadata.
 function createComment(req, res) {
 	const date = new Date(Date.now()).toLocaleString();
 	const newComment = new Comment({

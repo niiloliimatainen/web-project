@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+// Comment that can be added by user to the entity
 let commentSchema = new Schema({
 	userId: String,
 	username: String,

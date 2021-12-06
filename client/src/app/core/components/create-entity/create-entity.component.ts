@@ -37,6 +37,7 @@ export class CreateEntityComponent implements OnDestroy {
       title: ['', Validators.required],
     });
 
+    // Identify component's state, edit or create new
     this.routeSubscription = this.route.url.subscribe((url) => {
       if (url[0].path === 'edit') {
         this.editMode = true;
@@ -44,6 +45,7 @@ export class CreateEntityComponent implements OnDestroy {
       }
     });
 
+    // Subscribe breakpoint observable and set orientation according to it
     this.breakpointSubscription = this.breakpointService.isHandset$.subscribe(
       (isHandset) => {
         if (isHandset) this.orientation = 'vertical';
@@ -52,6 +54,7 @@ export class CreateEntityComponent implements OnDestroy {
     );
   }
 
+  // Create new entity and navigate to front page after success
   submit() {
     this.entityService
       .createEntity(
@@ -64,6 +67,7 @@ export class CreateEntityComponent implements OnDestroy {
       });
   }
 
+  // Update entity and navigate back to entity view after success
   update() {
     this.entity.title = this.firstStep.get('title')?.value;
     this.entity.content = this.textContent;

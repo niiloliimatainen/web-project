@@ -13,6 +13,8 @@ import { Entity } from '../models/entity.model';
 @Injectable({
   providedIn: 'root',
 })
+
+// This service is used to handle all the core actions that are needed in multiple components
 export class CoreService implements OnDestroy {
   private breakpointSubscription: Subscription;
   private loginDialogRef: MatDialogRef<LoginRegistrationComponent> | undefined;
@@ -30,6 +32,7 @@ export class CoreService implements OnDestroy {
     private router: Router,
     private location: Location
   ) {
+    // Subscribe to isHandset observable. If breakpoint changes, close dialogs that a have different structure in desktop or mobile views
     this.breakpointSubscription = this.breakpointService.isHandset$.subscribe(
       (isHandsetPortrait) => {
         this.isHandset = isHandsetPortrait;
@@ -39,12 +42,14 @@ export class CoreService implements OnDestroy {
     );
   }
 
+  // Navigate to create entity view. URL determines on which mode the component will be
   openCreateEntity(editMode: boolean) {
     if (!this.authService.isLoggedIn()) return this.openLogin();
     if (editMode) this.router.navigate(['/edit']);
     else this.router.navigate(['/create']);
   }
 
+  // Open takeInput dialog and inject data to it. Dialog has different size on mobile view
   openTakeInput(editable: Comment | string, type: string, action: string) {
     if (!this.authService.isLoggedIn()) return this.openLogin();
 
@@ -62,6 +67,7 @@ export class CoreService implements OnDestroy {
       });
     }
 
+    // Subscribe to events that occur in takeInput dialog and emit them forward
     const newCommentSub =
       this.commentDialogRef.componentInstance.commentAdded.subscribe((res) =>
         this.newComment.next(res)
@@ -84,6 +90,7 @@ export class CoreService implements OnDestroy {
     });
   }
 
+  // Open login/registration component. In mobile views it comes from the bottom and takes 80% of the screen. In other screen sizes it is a static normal dialog
   openLogin() {
     if (this.isHandset) {
       this.loginDialogRef = this.dialog.open(LoginRegistrationComponent, {

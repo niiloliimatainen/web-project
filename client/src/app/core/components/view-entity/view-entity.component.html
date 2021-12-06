@@ -8,6 +8,7 @@
       <mat-icon>keyboard_backspace</mat-icon>
     </button>
     <span class="spacer"></span>
+    <!-- If entity is created by the logged in user or user is admin, show tool menu. If entity is deleted, app will navigate back to front page -->
     <app-tool-menu
       *ngIf="createdByUser || this.authService.isAdmin()"
       [entity]="entity"
@@ -63,6 +64,7 @@
         Add comment
       </button>
     </div>
+    <!-- Create list from all the comments under entity. If comment is deleted, update comments -->
     <mat-list>
       <app-comment
         *ngFor="let comment of this.comments"

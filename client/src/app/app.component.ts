@@ -9,8 +9,10 @@ export class AppComponent {
   title = 'client';
   private renderer: Renderer2;
 
+  // Add theme to the body
   constructor(rendererFactory: RendererFactory2) {
     this.renderer = rendererFactory.createRenderer(null, null);
+    // TODO: add support to multiple themes
     this.renderer.addClass(document.body, 'app-dark-theme');
   }
 }

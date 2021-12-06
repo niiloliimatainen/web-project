@@ -19,6 +19,7 @@
         <h3 class="content">{{ entity.title }}</h3>
       </div>
       <span class="spacer"></span>
+      <!-- Won't show votes with mobile devices -->
       <app-vote *ngIf="!(isHandset$ | async)" [entity]="entity"></app-vote>
     </div>
   </mat-list-item>

@@ -1,3 +1,4 @@
+// Data transfer object for entity
 export interface Entity {
   _id: string;
   userId: string;

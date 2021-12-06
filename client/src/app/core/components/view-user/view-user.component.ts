@@ -27,6 +27,8 @@ export class ViewUserComponent implements OnDestroy {
     public coreService: CoreService,
     private breakpointService: BreakpointService
   ) {
+    // Get user's id from url and use switch map to get the user's metadata
+    // SwitchMap changes the route request observable to user request observable after the first request is done, so only one subscribe is needed.
     this.routeSubscription = this.route.params
       .pipe(switchMap((params) => this.authService.getUser(params.id)))
       .subscribe((user) => {
@@ -34,17 +36,20 @@ export class ViewUserComponent implements OnDestroy {
         this.isUserLoggedIn();
       });
 
+    // Get loginEvents and update userLoggedIn flag after event occurs
     this.loginEventSubscription = this.authService
       .getLoginEvent()
       .subscribe(() => {
         this.isUserLoggedIn();
       });
 
+    // Get bioModified events and update bio if event occurs
     this.bioModifiedSubscription = this.coreService
       .bioModified()
       .subscribe((res) => (this.user.bio = res));
   }
 
+  // Set userLoggedIn flag
   private isUserLoggedIn() {
     if (this.authService.getUserId() === this.user._id)
       this.userLoggedIn = true;

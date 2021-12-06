@@ -8,6 +8,7 @@ import { Result } from '../models/result.model';
 @Injectable({
   providedIn: 'root',
 })
+// Service that handles all the endpoints related to entities
 export class EntityService {
   private readonly entityUrl = environment.entity_url;
   private options = {
