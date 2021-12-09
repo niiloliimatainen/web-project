@@ -37,7 +37,7 @@
 
 <mat-menu #userMenu="matMenu">
   <button mat-menu-item [routerLink]="['/user/', this.authService.getUserId()]">
-    <span> View profile</span>
+    <span>View profile</span>
   </button>
   <button mat-menu-item (click)="this.logout()">
     <span>Log out</span>

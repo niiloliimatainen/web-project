@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Comment } from 'src/app/core/models/comment.model';
 import { Entity } from 'src/app/core/models/entity.model';
+import { BreakpointService } from 'src/app/core/services/breakpoint.service';
 import { CommentService } from 'src/app/core/services/comment.service';
 import { CoreService } from 'src/app/core/services/core.service';
 import { EntityService } from 'src/app/core/services/entity.service';
@@ -19,12 +20,15 @@ export class ToolMenuComponent {
 
   @Output() deletedComment = new EventEmitter<Comment>();
 
+  isHandset$ = this.breakpointService.isHandset$;
+
   constructor(
     private coreService: CoreService,
     private entityService: EntityService,
     private commentService: CommentService,
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private breakpointService: BreakpointService
   ) {}
 
   edit() {

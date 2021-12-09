@@ -67,8 +67,9 @@
     <!-- Create list from all the comments under entity. If comment is deleted, update comments -->
     <mat-list>
       <app-comment
-        *ngFor="let comment of this.comments"
+        *ngFor="let comment of this.comments; let lastComment = last"
         [comment]="comment"
+        [lastComment]="lastComment"
         (deletedComment)="this.updateComments($event, true)"
       ></app-comment>
     </mat-list>
