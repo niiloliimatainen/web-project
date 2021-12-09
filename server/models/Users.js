@@ -25,6 +25,7 @@ Users.findOne({ username: 'admin' }, (err, admin) => {
 			if (err) throw err;
 			bcrypt.hash('Adm1nAdm1n!', salt, (err, hash) => {
 				if (err) throw err;
+				const date = new Date(Date.now()).toLocaleString();
 				const newUser = new Users({
 					email: 'admin@app.com',
 					username: 'admin',
@@ -32,6 +33,7 @@ Users.findOne({ username: 'admin' }, (err, admin) => {
 					entities: [],
 					comments: [],
 					imageId: '',
+					registerDate: date,
 				});
 
 				newUser.save((err) => {

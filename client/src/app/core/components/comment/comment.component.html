@@ -1,4 +1,4 @@
-<div class="comment">
+<div class="comment" [ngClass]="{ 'last-comment': lastComment }">
   <mat-list-item>
     <img
       [routerLink]="['/user/', comment.userId]"

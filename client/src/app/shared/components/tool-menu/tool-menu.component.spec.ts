@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { ToolMenuComponent } from './tool-menu.component';
@@ -20,6 +21,7 @@ describe('ToolMenuComponent', () => {
         MatDialogModule,
         MatIconModule,
         MatListModule,
+        MatMenuModule,
       ],
     }).compileComponents();
   });

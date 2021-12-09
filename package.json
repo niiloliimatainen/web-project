@@ -8,6 +8,8 @@
 		"dev": "concurrently \"npm run server\" \"npm run client\"",
 		"client": "npm start --prefix client",
 		"server": "npm run nodemon --prefix server",
+		"install:client": "cd client && npm install",
+		"install:server": "cd server && npm install",
 		"test": "cd client && ng test"
 	},
 	"repository": {

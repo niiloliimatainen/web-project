@@ -1,21 +1,15 @@
 # Web Project (Angular/Node.js)
 
----
-
 ## Terms used in this README
 
 - backend - RESTful API implemented with Node.js, Express and MongoDB
 - frontend - Single-page application implemented with Angular
-
----
 
 ## Requirements
 
 - [Node.js](https://nodejs.org/en/) atleast version `v12.17.0`
 - [npm](https://www.npmjs.com/get-npm) (Node Package Manager) atleast version `7.14.0`
 - Backend must run on localhost in order for frontend to show any content.
-
----
 
 ## Getting started
 
@@ -27,8 +21,6 @@
 6. Optional: initialize server with Postman collection (instructions are down below)
 7. Open browser of your choice and navigate to `http://localhost:4200/`
 
----
-
 ## NPM Scripts
 
 Run these from the root folder of this repository
@@ -39,8 +31,6 @@ Run these from the root folder of this repository
 - `client` > run only frontend
 - `server` > run only backend
 - `test` > run unit tests for frontend
-
----
 
 ## Tests
 
@@ -59,8 +49,6 @@ How to run it:
 3. Set `Server init.postman_environment.json` as an active environment
 4. Run the collection
 
----
+## Documentation
 
-## Angular app
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.1.
+More specific documentation can be found from the `docs` folder

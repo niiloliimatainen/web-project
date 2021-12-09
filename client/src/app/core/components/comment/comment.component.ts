@@ -18,6 +18,7 @@ import { CoreService } from '../../services/core.service';
 })
 export class CommentComponent implements OnInit, OnDestroy {
   @Input() comment: Comment = {} as Comment;
+  @Input() lastComment = false;
   @Output() deletedComment = new EventEmitter<Comment>();
 
   createdByUser: boolean = false;
