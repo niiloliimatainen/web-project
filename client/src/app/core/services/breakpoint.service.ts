@@ -15,6 +15,10 @@ export class BreakpointService {
     this.isHandset$ = this.observeBreakpoints([Breakpoints.HandsetPortrait]);
   }
 
+  isMaxWidth(pixelValue: number) {
+    return this.observeBreakpoints([`(max-width: ${pixelValue}px)`]);
+  }
+
   // Return observable that shows if the breakpoint matches the screen size
   private observeBreakpoints(breakpoints: string[]): Observable<boolean> {
     return this.breakpointObserver.observe(breakpoints).pipe(

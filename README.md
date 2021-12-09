@@ -11,26 +11,28 @@
 
 ## Requirements
 
-- [Node.js](https://nodejs.org/en/) atleast version `v12.17.0`
+- [Node.js](https://nodejs.org/en/) atleast version `12.17.0`
 - [npm](https://www.npmjs.com/get-npm) (Node Package Manager) atleast version `7.14.0`
+- [MongoDB](https://docs.mongodb.com/manual/installation/) atleast version `4.4.5`
 - Backend must run on localhost in order for frontend to show any content.
 
 ## Getting started
 
 1. Clone this repository to your own environment [repository](https://github.com/niiloliimatainen/web-project.git)
 2. Open terminal in the root folder
-3. Run `npm run install:client`
-4. Run `npm run install:server`
-5. Run `npm run dev`
-6. Optional: initialize server with Postman collection (instructions are down below)
-7. Open browser of your choice and navigate to `http://localhost:4200/`
+3. Run `npm install`
+4. Run `npm run install:client`
+5. Run `npm run install:server`
+6. Run `npm run dev`
+7. Optional: initialize server with Postman collection (instructions are down below)
+8. Open browser of your choice and navigate to `http://localhost:4200/`
 
 ## NPM Scripts
 
 Run these from the root folder of this repository
 
-- `install:client` > download and install all necessary dependencies to frontend
-- `install:server` > download and install all necessary dependencies to backend
+- `install:client` > download and install all the necessary dependencies to frontend
+- `install:server` > download and install all the necessary dependencies to backend
 - `dev` > run backend and frontend concurrently
 - `client` > run only frontend
 - `server` > run only backend

@@ -26,21 +26,22 @@
 
   <div
     [ngClass]="{
-      'profile-layout': (isHandset$ | async) === false,
-      'profile-layout-mobile': (isHandset$ | async) === true
+      'profile-layout': (isTouchDevice$ | async) === false,
+      'profile-layout-mobile': (isTouchDevice$ | async) === true
     }"
   >
-    <img
-      matListAvatar
-      [ngClass]="{
-        'profile-image': (isHandset$ | async) === false,
-        'profile-image-mobile': (isHandset$ | async) === true
-      }"
-      [src]="this.coreService.getUserImage(user._id)"
-      onerror="this.src='../../../../assets/placeholder.png';"
-      alt="user"
-    />
-
+    <div class="image-container">
+      <img
+        matListAvatar
+        [ngClass]="{
+          'profile-image': (isTouchDevice$ | async) === false,
+          'profile-image-mobile': (isTouchDevice$ | async) === true
+        }"
+        [src]="this.coreService.getUserImage(user._id)"
+        onerror="this.src='../../../../assets/placeholder.png';"
+        alt="user"
+      />
+    </div>
     <div class="content-container">
       <h1 class="username">Profile | {{ this.user.username }}</h1>
       <mat-divider></mat-divider>

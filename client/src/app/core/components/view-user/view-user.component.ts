@@ -20,7 +20,7 @@ export class ViewUserComponent implements OnDestroy {
 
   userLoggedIn: boolean = false;
   user: User = {} as User;
-  isHandset$ = this.breakpointService.isHandset$;
+  isTouchDevice$ = this.breakpointService.isMaxWidth(800);
   loading$ = new Subject<boolean>();
 
   constructor(
