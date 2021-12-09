@@ -1,9 +1,5 @@
 # Web Project (Angular/Node.js)
 
-## Table of contents
-
-[TOC]
-
 ## Terms used in this README
 
 - backend - RESTful API implemented with Node.js, Express and MongoDB
