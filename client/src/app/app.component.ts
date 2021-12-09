@@ -1,4 +1,10 @@
-import { Component, Renderer2, RendererFactory2 } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  Renderer2,
+  RendererFactory2,
+} from '@angular/core';
+import { AuthService } from './core/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +16,18 @@ export class AppComponent {
   private renderer: Renderer2;
 
   // Add theme to the body
-  constructor(rendererFactory: RendererFactory2) {
-    this.renderer = rendererFactory.createRenderer(null, null);
+  constructor(
+    private rendererFactory: RendererFactory2,
+    private authService: AuthService
+  ) {
+    this.renderer = this.rendererFactory.createRenderer(null, null);
     // TODO: add support to multiple themes
     this.renderer.addClass(document.body, 'app-dark-theme');
+  }
+
+  // When the app is unloaded, logout user
+  @HostListener('window:unload', ['$event'])
+  appUnloaded() {
+    this.authService.logout();
   }
 }

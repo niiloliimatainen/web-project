@@ -1,5 +1,9 @@
 # Web Project (Angular/Node.js)
 
+## Table of contents
+
+[TOC]
+
 ## Terms used in this README
 
 - backend - RESTful API implemented with Node.js, Express and MongoDB
@@ -49,6 +53,6 @@ How to run it:
 3. Set `Server init.postman_environment.json` as an active environment
 4. Run the collection
 
-## Angular app
+## Documentation
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.1.
+More specific documentation can be found from the `docs` folder
